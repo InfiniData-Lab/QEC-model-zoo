@@ -1,0 +1,8 @@
+[WARN] CONDA_SH_PATH not set or not found. Skipping conda activation.
+Launching inference: d=7, hf_repo=Dreamworldsmile/ntu-surface-code-decoder, shots=10000, eval_p=0.005
+Downloading from HF: Dreamworldsmile/ntu-surface-code-decoder/surface/d7.pth
+============================================================
+Evaluation: d=7 | device=cuda (1 GPUs) | shots=10000 | eval_p=0.005
+============================================================
+[Complete] d=7 LER: 0.004200 | Results saved to eval_d7_results.csv
+[Done] Inference completed. Results saved to eval_d7_results.csv

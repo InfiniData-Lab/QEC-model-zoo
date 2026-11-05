@@ -1,0 +1,4 @@
+- workflow.task=inference
+- +exp_tag=cpu_check_fast
+- ++load_checkpoint=True
+- +model_checkpoint_file=saved predecoder models/Ising-Decoder-SurfaceCode-1-Fast.pt

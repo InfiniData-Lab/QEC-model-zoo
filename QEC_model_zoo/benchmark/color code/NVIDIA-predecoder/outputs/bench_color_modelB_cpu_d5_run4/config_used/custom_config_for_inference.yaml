@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+#
+# Color-code inference config for the pretrained cascade "Model B"
+# (nvidia/Ising-Decoder-ColorCode-1-Fast, receptive field R=13).
+#
+# Like the surface inference configs, this file does NOT carry a `test:` block — the
+# public-config validator rejects `test`/`train`/`val`. Test parameters (samples, batch
+# size, distance, rounds, p_error, basis) are supplied at runtime via PREDECODER_TEST_*
+# env vars set by run_custom_inference.sh / QEC-PD-COLOR-D13-ModelB-inference.sh.
+#
+# This uses the faithful color pipeline (qec/color_code/detector_input.py + the superdense
+# memory circuit + evaluation/logical_error_rate_color.py, vendored from NVIDIA/Ising-
+# Decoding), so Model B reproduces its real before/after LER. Verified at d=5, p=0.003:
+# PD+Chromobius LER ~7e-3 vs Chromobius baseline ~1.0e-2, ~83% detector-density reduction.
+model_id: B          # cascade model; weights loaded from PREDECODER_SAFETENSORS_CHECKPOINT
+code: color
+distance: 13
+n_rounds: 13
+
+custom_in_channels: 4   # Model B stem expects 4 input channels
+custom_out_channels: 4
+
+validation_ler: false
+
+workflow:
+  task: inference

@@ -1,0 +1,36 @@
+model: XGBoost
+hyperparameters: # HP search spaces taken from Tabzilla https://github.com/naszilla/tabzilla/blob/main/TabZilla/models/tree_models.py
+    max_depth:
+        default: 2
+        value_type: int
+        log_scale: true
+        range:
+        - 2
+        - 10
+    alpha:
+        default: 1.0
+        value_type: float
+        log_scale: true
+        range:
+        - 1e-8
+        - 1.0
+    lambda:
+        default: 1.0
+        value_type: float
+        log_scale: true
+        range:
+            - 1e-8
+            - 1.0
+    eta:
+        default: 0.01
+        value_type: float
+        log_scale: true
+        range:
+        - 0.01
+        - 0.3
+    epochs:
+        default: 500
+        value_type: ignore
+    batch_size:
+        default: 64
+        value_type: ignore

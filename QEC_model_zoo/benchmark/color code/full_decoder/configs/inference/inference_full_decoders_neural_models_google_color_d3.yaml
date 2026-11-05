@@ -1,0 +1,13 @@
+experiment_name: "inference_full_decoders_neural_models_google_color_d3"
+dataset_id: 'datasets/croissant/06_google_color_d3.json'
+experiment_type: inference
+decoder_type: 'full-decoder'
+random_seed: 42
+repetitions: 30
+decoder_configs:
+  - param_path: "experiments/model_checkpoints/train_full_decoders_neural_models_google_color_d3/mlp/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_neural_models_google_color_d3/mlp/checkpoint_best.pt"
+  - param_path: "experiments/model_checkpoints/train_full_decoders_neural_models_google_color_d3/tabm/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_neural_models_google_color_d3/tabm/checkpoint_best.pt"
+  - param_path: "experiments/model_checkpoints/train_full_decoders_neural_models_google_color_d3/tabr/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_neural_models_google_color_d3/tabr/checkpoint_best.pt"

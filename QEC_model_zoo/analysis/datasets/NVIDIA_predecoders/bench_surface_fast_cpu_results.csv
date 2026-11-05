@@ -1,0 +1,7 @@
+run,ler_avg_no_predecoder,ler_avg_after_predecoder,pymatching_speedup_avg_xz,source
+1,0.002075,0.001831,2.327,bench_surface_fast_cpu_run1/logs/inference.console.log
+2,0.001709,0.001709,2.120,bench_surface_fast_cpu_run2/logs/inference.console.log
+3,0.001343,0.002563,2.190,bench_surface_fast_cpu_run3/logs/inference.console.log
+4,0.001465,0.000854,2.224,bench_surface_fast_cpu_run4/logs/inference.console.log
+5,0.001831,0.001465,2.293,bench_surface_fast_cpu_run5/logs/inference.console.log
+6,0.001099,0.001587,2.178,bench_surface_fast_cpu_run6/logs/inference.console.log

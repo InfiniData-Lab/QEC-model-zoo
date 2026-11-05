@@ -1,0 +1,4 @@
+workflow.task=inference
+exp_tag=pretrained_2080ti_CNN
+++load_checkpoint=True
+hydra.run.dir=outputs/pretrained_2080ti_CNN hydra.output_subdir=null hydra.job.chdir=false distance=9 n_rounds=9

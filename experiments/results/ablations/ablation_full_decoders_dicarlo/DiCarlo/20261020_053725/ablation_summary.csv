@@ -1,0 +1,89 @@
+ablation_id,model,feature_groups,n_features,train_time_s,accuracy,lep,ler
+full,mlp,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft', 'lstm']",66,3.12,0.78248,0.21752000000000005,0.015485910800658087
+full,tabm,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft', 'lstm']",66,65.92,0.791495,0.20850500000000005,0.014391426833854496
+full,tabr,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft', 'lstm']",66,916.02,0.780055,0.21994499999999995,0.01578500149341935
+full,xgboost,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft', 'lstm']",66,12.47,0.78971,0.21028999999999998,0.014561514373573945
+full,lightgbm,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft', 'lstm']",66,102.35,0.791235,0.20876499999999998,0.014402002376884276
+full,catboost,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft', 'lstm']",66,2280.74,0.78984,0.21016,0.014561256669166679
+full,tabiclv2,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft', 'lstm']",66,4.49,0.57421,0.42579,0.12443493243378617
+full,tabpfnv2,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft', 'lstm']",66,1.15,0.787775,0.212225,0.014787585744305566
+minimal,mlp,['code'],3,1.23,0.56889,0.43111,0.12669377833468642
+minimal,tabm,['code'],3,72.01,0.57421,0.42579,0.12443493243378617
+minimal,tabr,['code'],3,140.41,0.57394,0.42606,0.12443493242430048
+minimal,xgboost,['code'],3,2.05,0.57508,0.42491999999999996,0.12442821358735032
+minimal,lightgbm,['code'],3,2.01,0.57508,0.42491999999999996,0.12442821358735032
+minimal,catboost,['code'],3,104.17,0.57508,0.42491999999999996,0.12442821358735032
+minimal,tabiclv2,['code'],3,0.38,0.57421,0.42579,0.12443493243378617
+minimal,tabpfnv2,['code'],3,0.09,0.573965,0.42603500000000005,0.124434936979362
+crafted,mlp,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft']",42,1.23,0.594685,0.405315,0.09622014043183931
+crafted,tabm,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft']",42,348.64,0.67069,0.32931,0.03922902319668847
+crafted,tabr,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft']",42,933.1,0.67129,0.32870999999999995,0.039008633943273
+crafted,xgboost,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft']",42,52.72,0.672575,0.32742499999999997,0.03886817426014253
+crafted,lightgbm,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft']",42,200.01,0.675415,0.324585,0.037353627088650046
+crafted,catboost,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft']",42,728.76,0.674075,0.325925,0.038152832671754455
+crafted,tabiclv2,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft']",42,0.85,0.654845,0.345155,0.04629961789342749
+crafted,tabpfnv2,"['temporal', 'rates', 'final', 'code', 'spatial', 'soft']",42,0.46,0.655375,0.34462499999999996,0.04602162630574921
+lstm_only,mlp,['lstm'],24,0.72,0.774955,0.22504500000000005,0.016651199423117935
+lstm_only,tabm,['lstm'],24,54.51,0.78972,0.21028000000000002,0.014512294117811344
+lstm_only,tabr,['lstm'],24,937.53,0.78827,0.21172999999999997,0.014657531327965385
+lstm_only,xgboost,['lstm'],24,21.74,0.78964,0.21036,0.014507393495124839
+lstm_only,lightgbm,['lstm'],24,30.89,0.789615,0.21038500000000004,0.014515015230367427
+lstm_only,catboost,['lstm'],24,400.69,0.7896,0.21040000000000003,0.014508225344439452
+lstm_only,tabiclv2,['lstm'],24,0.68,0.57421,0.42579,0.12443493243378617
+lstm_only,tabpfnv2,['lstm'],24,0.34,0.789085,0.21091499999999996,0.014546264583404824
+lstm_no_temporal,mlp,"['lstm', 'rates', 'final', 'code', 'spatial', 'soft']",50,3.51,0.783325,0.21667499999999995,0.015388373551032212
+lstm_no_temporal,tabm,"['lstm', 'rates', 'final', 'code', 'spatial', 'soft']",50,83.75,0.79237,0.20762999999999998,0.014234170045222021
+lstm_no_temporal,tabr,"['lstm', 'rates', 'final', 'code', 'spatial', 'soft']",50,927.95,0.78489,0.21511000000000002,0.015044547991848675
+lstm_no_temporal,xgboost,"['lstm', 'rates', 'final', 'code', 'spatial', 'soft']",50,16.23,0.79,0.20999999999999996,0.014500467510075995
+lstm_no_temporal,lightgbm,"['lstm', 'rates', 'final', 'code', 'spatial', 'soft']",50,100.8,0.79159,0.20840999999999998,0.014335421841517825
+lstm_no_temporal,catboost,"['lstm', 'rates', 'final', 'code', 'spatial', 'soft']",50,1329.01,0.792505,0.20749499999999999,0.014237436974110392
+lstm_no_temporal,tabiclv2,"['lstm', 'rates', 'final', 'code', 'spatial', 'soft']",50,4.75,0.57421,0.42579,0.12443493243378617
+lstm_no_temporal,tabpfnv2,"['lstm', 'rates', 'final', 'code', 'spatial', 'soft']",50,5.96,0.78959,0.21040999999999999,0.01457446006131482
+no_temporal,mlp,"['rates', 'final', 'code', 'spatial', 'soft']",26,0.73,0.573635,0.426365,0.12408998796207618
+no_temporal,tabm,"['rates', 'final', 'code', 'spatial', 'soft']",26,422.6,0.663755,0.336245,0.04224711064718069
+no_temporal,tabr,"['rates', 'final', 'code', 'spatial', 'soft']",26,708.77,0.657545,0.34245499999999995,0.045810358098286506
+no_temporal,xgboost,"['rates', 'final', 'code', 'spatial', 'soft']",26,21.93,0.66961,0.33038999999999996,0.04013849077611275
+no_temporal,lightgbm,"['rates', 'final', 'code', 'spatial', 'soft']",26,59.59,0.673805,0.326195,0.038897045742927946
+no_temporal,catboost,"['rates', 'final', 'code', 'spatial', 'soft']",26,662.26,0.67055,0.32945,0.03989075139898297
+no_temporal,tabiclv2,"['rates', 'final', 'code', 'spatial', 'soft']",26,0.65,0.651835,0.34816499999999995,0.048505175738555596
+no_temporal,tabpfnv2,"['rates', 'final', 'code', 'spatial', 'soft']",26,0.32,0.65511,0.34489000000000003,0.046631486797605086
+no_rates,mlp,"['temporal', 'final', 'code', 'spatial', 'soft']",39,0.77,0.581695,0.41830500000000004,0.10546243877520271
+no_rates,tabm,"['temporal', 'final', 'code', 'spatial', 'soft']",39,268.13,0.671295,0.328705,0.03913541740510699
+no_rates,tabr,"['temporal', 'final', 'code', 'spatial', 'soft']",39,946.02,0.67266,0.32733999999999996,0.038836360000044576
+no_rates,xgboost,"['temporal', 'final', 'code', 'spatial', 'soft']",39,33.55,0.670075,0.329925,0.0399651018000072
+no_rates,lightgbm,"['temporal', 'final', 'code', 'spatial', 'soft']",39,64.36,0.671175,0.32882500000000003,0.0394426578758387
+no_rates,catboost,"['temporal', 'final', 'code', 'spatial', 'soft']",39,380.29,0.664385,0.335615,0.042482037419593645
+no_rates,tabiclv2,"['temporal', 'final', 'code', 'spatial', 'soft']",39,1.07,0.65165,0.34835000000000005,0.04870613471397731
+no_rates,tabpfnv2,"['temporal', 'final', 'code', 'spatial', 'soft']",39,4.13,0.65414,0.34585999999999995,0.04744219987761617
+no_final,mlp,"['temporal', 'rates', 'code', 'spatial', 'soft']",40,1.57,0.600875,0.39912499999999995,0.08790024475764441
+no_final,tabm,"['temporal', 'rates', 'code', 'spatial', 'soft']",40,438.04,0.670715,0.32928500000000005,0.039618381958131124
+no_final,tabr,"['temporal', 'rates', 'code', 'spatial', 'soft']",40,927.11,0.67357,0.32643,0.03806985474617977
+no_final,xgboost,"['temporal', 'rates', 'code', 'spatial', 'soft']",40,28.75,0.671755,0.328245,0.03895539407691526
+no_final,lightgbm,"['temporal', 'rates', 'code', 'spatial', 'soft']",40,106.98,0.67496,0.32504,0.037531448127391384
+no_final,catboost,"['temporal', 'rates', 'code', 'spatial', 'soft']",40,760.04,0.67365,0.32635000000000003,0.0383823313389687
+no_final,tabiclv2,"['temporal', 'rates', 'code', 'spatial', 'soft']",40,0.83,0.654045,0.345955,0.04719011748586797
+no_final,tabpfnv2,"['temporal', 'rates', 'code', 'spatial', 'soft']",40,3.85,0.66408,0.33592,0.04229040259237304
+no_code,mlp,"['temporal', 'rates', 'final', 'spatial', 'soft']",39,0.72,0.592895,0.40710500000000005,0.09718770097565807
+no_code,tabm,"['temporal', 'rates', 'final', 'spatial', 'soft']",39,485.64,0.67233,0.32767,0.038608542110706884
+no_code,tabr,"['temporal', 'rates', 'final', 'spatial', 'soft']",39,949.38,0.67186,0.32814,0.03887333551709049
+no_code,xgboost,"['temporal', 'rates', 'final', 'spatial', 'soft']",39,17.49,0.67094,0.32906,0.039543663139121034
+no_code,lightgbm,"['temporal', 'rates', 'final', 'spatial', 'soft']",39,32.79,0.672765,0.32723500000000005,0.03806789418312296
+no_code,catboost,"['temporal', 'rates', 'final', 'spatial', 'soft']",39,866.6,0.673695,0.32630499999999996,0.03836016542743379
+no_code,tabiclv2,"['temporal', 'rates', 'final', 'spatial', 'soft']",39,0.84,0.655645,0.34435499999999997,0.04633669622082344
+no_code,tabpfnv2,"['temporal', 'rates', 'final', 'spatial', 'soft']",39,4.2,0.65745,0.34255,0.045791165561873015
+no_spatial,mlp,"['temporal', 'rates', 'final', 'code', 'soft']",32,0.71,0.55709,0.44291,0.13908190424372183
+no_spatial,tabm,"['temporal', 'rates', 'final', 'code', 'soft']",32,307.43,0.67117,0.32882999999999996,0.0389097883418334
+no_spatial,tabr,"['temporal', 'rates', 'final', 'code', 'soft']",32,952.84,0.675465,0.324535,0.037405253035893496
+no_spatial,xgboost,"['temporal', 'rates', 'final', 'code', 'soft']",32,29.24,0.66879,0.33121,0.0401099294140781
+no_spatial,lightgbm,"['temporal', 'rates', 'final', 'code', 'soft']",32,194.74,0.672465,0.327535,0.038927501672847524
+no_spatial,catboost,"['temporal', 'rates', 'final', 'code', 'soft']",32,1263.42,0.670575,0.32942499999999997,0.039435088916215784
+no_spatial,tabiclv2,"['temporal', 'rates', 'final', 'code', 'soft']",32,0.77,0.65733,0.34267000000000003,0.04529792101097456
+no_spatial,tabpfnv2,"['temporal', 'rates', 'final', 'code', 'soft']",32,2.15,0.661125,0.33887500000000004,0.04363096100131104
+no_soft,mlp,"['temporal', 'rates', 'final', 'code', 'spatial']",34,1.54,0.60183,0.39817,0.0881782185624069
+no_soft,tabm,"['temporal', 'rates', 'final', 'code', 'spatial']",34,370.01,0.66755,0.33245,0.040340927029872485
+no_soft,tabr,"['temporal', 'rates', 'final', 'code', 'spatial']",34,725.16,0.662735,0.33726500000000004,0.04283831025973707
+no_soft,xgboost,"['temporal', 'rates', 'final', 'code', 'spatial']",34,14.23,0.67174,0.32826,0.039394236746651934
+no_soft,lightgbm,"['temporal', 'rates', 'final', 'code', 'spatial']",34,89.49,0.672485,0.327515,0.03836027093825117
+no_soft,catboost,"['temporal', 'rates', 'final', 'code', 'spatial']",34,689.68,0.670915,0.32908499999999996,0.039387733856693
+no_soft,tabiclv2,"['temporal', 'rates', 'final', 'code', 'spatial']",34,0.78,0.65297,0.34702999999999995,0.047689570050115065
+no_soft,tabpfnv2,"['temporal', 'rates', 'final', 'code', 'spatial']",34,3.07,0.662735,0.33726500000000004,0.04287424900711156

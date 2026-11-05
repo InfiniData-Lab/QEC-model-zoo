@@ -1,0 +1,18 @@
+{
+  "distance": 3,
+  "gnn_accuracy": 0.9363333333333334,
+  "gnn_balanced_accuracy": 0.8332031801754548,
+  "gnn_error_rate": 0.06366666666666665,
+  "gnn_metrics_path": "outputs/metrics/gnn_graphs_d3_r5_p0005.json",
+  "graph_type": "active_defect_knn",
+  "max_nodes": 64,
+  "mwpm_accuracy": 0.9732666666666666,
+  "mwpm_balanced_accuracy": 0.9406047263589834,
+  "mwpm_error_rate": 0.026733333333333387,
+  "mwpm_metrics_path": "outputs/metrics/mwpm_d3_r5_p0005.json",
+  "node_features": "x,y,t,detector_index_normalized",
+  "p": 0.004999999888241291,
+  "positive_label_fraction": 0.14433333333333334,
+  "rounds": 5,
+  "shots": 100000
+}

@@ -1,0 +1,68 @@
+{
+  "n_runs": 2,
+  "runs": [
+    {
+      "source": "QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_today_run1/logs/inference.console.log",
+      "basis": "Z",
+      "density_reduction_pct": 82.9,
+      "chromobius_speedup": 3.5308,
+      "shots": 4096,
+      "rounds": 5,
+      "pd_errors": 118,
+      "baseline_errors": 184,
+      "pd_ler_per_round": 0.00576171875,
+      "baseline_ler_per_round": 0.008984375,
+      "ler_improvement": 1.5593220338983051
+    },
+    {
+      "source": "QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_today_run2/logs/inference.console.log",
+      "basis": "Z",
+      "density_reduction_pct": 81.72,
+      "chromobius_speedup": 3.5756,
+      "shots": 4096,
+      "rounds": 5,
+      "pd_errors": 149,
+      "baseline_errors": 199,
+      "pd_ler_per_round": 0.007275390625,
+      "baseline_ler_per_round": 0.009716796875,
+      "ler_improvement": 1.3355704697986577
+    }
+  ],
+  "summary": [
+    {
+      "basis": "Z",
+      "metric": "pd_ler_per_round",
+      "n": 2,
+      "mean": 0.006518554687500001,
+      "std": 0.001070327647303856
+    },
+    {
+      "basis": "Z",
+      "metric": "baseline_ler_per_round",
+      "n": 2,
+      "mean": 0.0093505859375,
+      "std": 0.0005179004745018658
+    },
+    {
+      "basis": "Z",
+      "metric": "ler_improvement",
+      "n": 2,
+      "mean": 1.4474462518484814,
+      "std": 0.15821624827595718
+    },
+    {
+      "basis": "Z",
+      "metric": "chromobius_speedup",
+      "n": 2,
+      "mean": 3.5532000000000004,
+      "std": 0.031678383797157296
+    },
+    {
+      "basis": "Z",
+      "metric": "density_reduction_pct",
+      "n": 2,
+      "mean": 82.31,
+      "std": 0.8343860018001309
+    }
+  ]
+}

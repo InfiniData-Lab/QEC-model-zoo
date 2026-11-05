@@ -1,0 +1,30 @@
+model: TabM
+hyperparameters:
+    k:
+        default: 16
+        value_type: ignore
+    n_layers:
+        default: 2
+        value_type: int
+        range: [1, 5]
+    hidden_size:
+        default: 256
+        value_type: int
+        range: [64, 1024]
+    patience:
+        default: 30
+        value_type: ignore
+    learning_rate:
+        default: 0.001
+        value_type: float
+        range: [0.0001, 0.005]
+        log_scale: true
+    epochs:
+        default: 500
+        value_type: ignore
+    batch_size:
+        default: 1024
+        value_type: ignore
+    batch_size_inference:
+        default: 50000
+        value_type: ignore

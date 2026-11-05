@@ -1,0 +1,7 @@
+run,basis,shots,rounds,ler_no_predecoder_per_round,ler_after_predecoder_per_round,chromobius_speedup,source
+1,Z,4096,5,0.01044921875,0.006494140625,3.4722,bench_color_modelB_cpu_d5_run1/logs/inference.console.log
+2,Z,4096,5,0.00966796875,0.0068359375,3.4134,bench_color_modelB_cpu_d5_run2/logs/inference.console.log
+3,Z,4096,5,0.010107421875,0.006494140625,3.3473,bench_color_modelB_cpu_d5_run3/logs/inference.console.log
+4,Z,4096,5,0.0087890625,0.00615234375,3.4731,bench_color_modelB_cpu_d5_run4/logs/inference.console.log
+5,Z,4096,5,0.00869140625,0.006787109375,3.3318,bench_color_modelB_cpu_d5_run5/logs/inference.console.log
+6,Z,4096,5,0.008154296875,0.0056640625,3.4009,bench_color_modelB_cpu_d5_run6/logs/inference.console.log

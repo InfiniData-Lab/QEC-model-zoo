@@ -1,0 +1,2 @@
+config,p,total_samples,correct,errors,acc,ler,time_s,wall_us_per_sample,seed,chunk_size,rayon_num_threads,num_sets,pre_iter,set_max_iter,stop_nconv,alpha,gamma0,gamma_low,gamma_high,dem_path
+relaybp2d_reduced,0.005,1000,732,268,0.73200000,0.26800000,40.529,40529.099,20265528,1000,,60,12,12,1,1.0,0.15,-0.226,0.622,data/dems/72_12_6_0.005.dem

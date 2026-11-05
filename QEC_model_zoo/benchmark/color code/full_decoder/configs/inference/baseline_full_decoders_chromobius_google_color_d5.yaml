@@ -1,0 +1,6 @@
+experiment_name: "baseline_full_decoders_chromobius_google_color_d5"
+dataset_id: 'datasets/croissant/07_google_color_d5.json'
+experiment_type: baseline
+decoder_type: 'full-decoder'
+random_seed: 42
+repetitions: 30

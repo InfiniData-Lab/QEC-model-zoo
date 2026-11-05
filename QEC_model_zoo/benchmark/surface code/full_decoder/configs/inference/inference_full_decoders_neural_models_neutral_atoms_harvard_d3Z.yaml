@@ -1,0 +1,13 @@
+experiment_name: "inference_full_decoders_neural_models_neutral_atoms_harvard_d3Z"
+dataset_id: 'datasets/croissant/08_lukin_d3.json'
+experiment_type: inference
+decoder_type: 'full-decoder'
+random_seed: 42
+repetitions: 30
+decoder_configs:
+  - param_path: "experiments/model_checkpoints/train_full_decoders_neural_models_neutral_atoms_harvard_d3Z/mlp/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_neural_models_neutral_atoms_harvard_d3Z/mlp/checkpoint_best.pt"
+  - param_path: "experiments/model_checkpoints/train_full_decoders_neural_models_neutral_atoms_harvard_d3Z/tabm/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_neural_models_neutral_atoms_harvard_d3Z/tabm/checkpoint_best.pt"
+  - param_path: "experiments/model_checkpoints/train_full_decoders_neural_models_neutral_atoms_harvard_d3Z/tabr/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_neural_models_neutral_atoms_harvard_d3Z/tabr/checkpoint_best.pt"

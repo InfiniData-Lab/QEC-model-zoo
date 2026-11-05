@@ -1,0 +1,62 @@
+[
+  {
+    "distance": 3,
+    "n_rounds": 3,
+    "p": 0.004,
+    "shots": 20000,
+    "chromobius_errors": 16,
+    "chromobius_ler": 0.0008,
+    "stderr": 0.00019991998399359682,
+    "num_detectors": 18
+  },
+  {
+    "distance": 3,
+    "n_rounds": 3,
+    "p": 0.008,
+    "shots": 20000,
+    "chromobius_errors": 56,
+    "chromobius_ler": 0.0028,
+    "stderr": 0.0003736415394465663,
+    "num_detectors": 18
+  },
+  {
+    "distance": 5,
+    "n_rounds": 5,
+    "p": 0.004,
+    "shots": 20000,
+    "chromobius_errors": 1,
+    "chromobius_ler": 5e-05,
+    "stderr": 4.999874998437461e-05,
+    "num_detectors": 90
+  },
+  {
+    "distance": 5,
+    "n_rounds": 5,
+    "p": 0.008,
+    "shots": 20000,
+    "chromobius_errors": 20,
+    "chromobius_ler": 0.001,
+    "stderr": 0.0002234949663862701,
+    "num_detectors": 90
+  },
+  {
+    "distance": 7,
+    "n_rounds": 7,
+    "p": 0.004,
+    "shots": 20000,
+    "chromobius_errors": 0,
+    "chromobius_ler": 0.0,
+    "stderr": 0.0,
+    "num_detectors": 252
+  },
+  {
+    "distance": 7,
+    "n_rounds": 7,
+    "p": 0.008,
+    "shots": 20000,
+    "chromobius_errors": 5,
+    "chromobius_ler": 0.00025,
+    "stderr": 0.00011178942257655686,
+    "num_detectors": 252
+  }
+]

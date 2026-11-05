@@ -1,0 +1,13 @@
+experiment_name: "inference_full_decoders_tree_models_googled25"
+dataset_id: 'datasets/croissant/04_google_repetition_d25.json'
+experiment_type: inference
+decoder_type: 'full-decoder'
+random_seed: 42
+repetitions: 30
+decoder_configs:
+  - param_path: "experiments/model_checkpoints/train_full_decoders_tree_models_googled25/catboost/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_tree_models_googled25/catboost/checkpoint_best.cbm"
+  - param_path: "experiments/model_checkpoints/train_full_decoders_tree_models_googled25/lightgbm/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_tree_models_googled25/lightgbm/checkpoint_best.txt"
+  - param_path: "experiments/model_checkpoints/train_full_decoders_tree_models_googled25/xgboost/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_tree_models_googled25/xgboost/checkpoint_best.json"

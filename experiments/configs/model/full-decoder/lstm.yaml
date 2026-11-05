@@ -1,0 +1,31 @@
+model: lstm
+hyperparameters:
+  hidden_size:
+    default: 64
+    value_type: ignore
+  num_layers:
+    default: 2
+    value_type: ignore
+  dropout:
+    default: 0.05
+    value_type: float
+    range: [0.01, 0.08]
+  learning_rate:
+    default: 1e-3
+    value_type: float
+    range: [1e-4, 5e-3]
+  batch_size:
+    default: 64
+    value_type: ignore
+  epochs:
+    default: 200
+    value_type: ignore
+  verbose:
+    default: 2
+    value_type: ignore
+  patience:
+    default: 20
+    value_type: ignore
+  early_stopping:
+    default: true
+    value_type: ignore

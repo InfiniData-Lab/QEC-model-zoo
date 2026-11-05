@@ -1,0 +1,36 @@
+# =============================================================================
+# NTU Decoder — Conda environment specification (macOS / Apple Silicon)
+# =============================================================================
+#
+# Create:  conda env create -f environment-macos.yml
+# Update:  conda env update -f environment-macos.yml --prune
+#
+# CPU/MPS variant of environment.yml for local development. There is no CUDA
+# on macOS, and the pytorch/pyg conda channels do not ship osx-arm64 builds,
+# so PyTorch and PyG come from PyPI. numpy/scipy also come from PyPI: the
+# conda-forge builds link OpenMP OpenBLAS, whose libomp clashes with the one
+# bundled in the torch wheel ("OMP: Error #15"). torch_scatter is omitted:
+# neural_bp.py falls back to a torch-native scatter when it is not installed.
+# Run scripts with --device cpu (or leave --device auto).
+# =============================================================================
+
+name: NTU-repro
+channels:
+  - conda-forge
+
+dependencies:
+  # --- Language -----------------------------------------------------------------
+  - python=3.10
+
+  - pip
+  - pip:
+      - numpy>=1.24
+      - scipy>=1.10
+      - huggingface_hub>=0.20
+      - torch>=2.1
+      - torch_geometric>=2.5   # Neural-BP decoder
+      - stim>=1.13             # Stim QEC simulator
+      - pymatching>=2.4        # Surface code baseline
+      # BB classical baselines (optional, when running BB code, they are needed):
+      - ldpc          # BP-OSD decoder
+      - relay_bp      # Relay BP decoder

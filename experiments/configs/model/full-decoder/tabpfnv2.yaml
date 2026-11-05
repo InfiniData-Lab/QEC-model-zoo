@@ -1,0 +1,14 @@
+model: TabPFNv2
+hyperparameters:
+    variant:
+        default: v2
+        value_type: ignore
+    ensembles:
+        default: 2
+        value_type: ignore
+    batch_size_inference:
+        default: 2048
+        value_type: ignore
+    max_context:
+        default: 16384
+        value_type: ignore

@@ -1,0 +1,9 @@
+experiment_name: "train_full_decoders_sequence_models_dicarlo"
+dataset_id: 'datasets/croissant/01_dicarlo.json'
+experiment_type: train-sequence
+decoder_type: 'full-decoder'
+random_seed: 42
+decoder_configs:
+  - params_path: "experiments/configs/model/full-decoder/lstm.yaml"
+    params_save_path: "experiments/model_checkpoints/train_full_decoders_sequence_models_dicarlo/lstm/params.yaml"
+    checkpoint_save_path: "experiments/model_checkpoints/train_full_decoders_sequence_models_dicarlo/lstm/checkpoint_best.pt"

@@ -1,0 +1,15 @@
+services:
+  pipeline:
+    build: .
+    volumes:
+      - ./data:/app/data
+      - ./outputs:/app/outputs
+    environment:
+      - DISTANCE=${DISTANCE:-3}
+      - ROUNDS=${ROUNDS:-5}
+      - P=${P:-0.005}
+      - SHOTS=${SHOTS:-30000}
+      - MAX_NODES=${MAX_NODES:-64}
+      - K_NEIGHBORS=${K_NEIGHBORS:-4}
+      - EPOCHS=${EPOCHS:-30}
+      - BATCH_SIZE=${BATCH_SIZE:-128}

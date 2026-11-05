@@ -1,0 +1,3 @@
+- workflow.task=train
+- +exp_tag=cpu_smoke_mlp
+- ++load_checkpoint=False

@@ -1,0 +1,1378 @@
+[
+  {
+    "ablation_id": "full",
+    "model": "mlp",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft",
+      "lstm"
+    ],
+    "n_features": 66,
+    "train_time_s": 3.12,
+    "accuracy": 0.78248,
+    "lep": 0.21752000000000005,
+    "ler": 0.015485910800658087
+  },
+  {
+    "ablation_id": "full",
+    "model": "tabm",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft",
+      "lstm"
+    ],
+    "n_features": 66,
+    "train_time_s": 65.92,
+    "accuracy": 0.791495,
+    "lep": 0.20850500000000005,
+    "ler": 0.014391426833854496
+  },
+  {
+    "ablation_id": "full",
+    "model": "tabr",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft",
+      "lstm"
+    ],
+    "n_features": 66,
+    "train_time_s": 916.02,
+    "accuracy": 0.780055,
+    "lep": 0.21994499999999995,
+    "ler": 0.01578500149341935
+  },
+  {
+    "ablation_id": "full",
+    "model": "xgboost",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft",
+      "lstm"
+    ],
+    "n_features": 66,
+    "train_time_s": 12.47,
+    "accuracy": 0.78971,
+    "lep": 0.21028999999999998,
+    "ler": 0.014561514373573945
+  },
+  {
+    "ablation_id": "full",
+    "model": "lightgbm",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft",
+      "lstm"
+    ],
+    "n_features": 66,
+    "train_time_s": 102.35,
+    "accuracy": 0.791235,
+    "lep": 0.20876499999999998,
+    "ler": 0.014402002376884276
+  },
+  {
+    "ablation_id": "full",
+    "model": "catboost",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft",
+      "lstm"
+    ],
+    "n_features": 66,
+    "train_time_s": 2280.74,
+    "accuracy": 0.78984,
+    "lep": 0.21016,
+    "ler": 0.014561256669166679
+  },
+  {
+    "ablation_id": "full",
+    "model": "tabiclv2",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft",
+      "lstm"
+    ],
+    "n_features": 66,
+    "train_time_s": 4.49,
+    "accuracy": 0.57421,
+    "lep": 0.42579,
+    "ler": 0.12443493243378617
+  },
+  {
+    "ablation_id": "full",
+    "model": "tabpfnv2",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft",
+      "lstm"
+    ],
+    "n_features": 66,
+    "train_time_s": 1.15,
+    "accuracy": 0.787775,
+    "lep": 0.212225,
+    "ler": 0.014787585744305566
+  },
+  {
+    "ablation_id": "minimal",
+    "model": "mlp",
+    "feature_groups": [
+      "code"
+    ],
+    "n_features": 3,
+    "train_time_s": 1.23,
+    "accuracy": 0.56889,
+    "lep": 0.43111,
+    "ler": 0.12669377833468642
+  },
+  {
+    "ablation_id": "minimal",
+    "model": "tabm",
+    "feature_groups": [
+      "code"
+    ],
+    "n_features": 3,
+    "train_time_s": 72.01,
+    "accuracy": 0.57421,
+    "lep": 0.42579,
+    "ler": 0.12443493243378617
+  },
+  {
+    "ablation_id": "minimal",
+    "model": "tabr",
+    "feature_groups": [
+      "code"
+    ],
+    "n_features": 3,
+    "train_time_s": 140.41,
+    "accuracy": 0.57394,
+    "lep": 0.42606,
+    "ler": 0.12443493242430048
+  },
+  {
+    "ablation_id": "minimal",
+    "model": "xgboost",
+    "feature_groups": [
+      "code"
+    ],
+    "n_features": 3,
+    "train_time_s": 2.05,
+    "accuracy": 0.57508,
+    "lep": 0.42491999999999996,
+    "ler": 0.12442821358735032
+  },
+  {
+    "ablation_id": "minimal",
+    "model": "lightgbm",
+    "feature_groups": [
+      "code"
+    ],
+    "n_features": 3,
+    "train_time_s": 2.01,
+    "accuracy": 0.57508,
+    "lep": 0.42491999999999996,
+    "ler": 0.12442821358735032
+  },
+  {
+    "ablation_id": "minimal",
+    "model": "catboost",
+    "feature_groups": [
+      "code"
+    ],
+    "n_features": 3,
+    "train_time_s": 104.17,
+    "accuracy": 0.57508,
+    "lep": 0.42491999999999996,
+    "ler": 0.12442821358735032
+  },
+  {
+    "ablation_id": "minimal",
+    "model": "tabiclv2",
+    "feature_groups": [
+      "code"
+    ],
+    "n_features": 3,
+    "train_time_s": 0.38,
+    "accuracy": 0.57421,
+    "lep": 0.42579,
+    "ler": 0.12443493243378617
+  },
+  {
+    "ablation_id": "minimal",
+    "model": "tabpfnv2",
+    "feature_groups": [
+      "code"
+    ],
+    "n_features": 3,
+    "train_time_s": 0.09,
+    "accuracy": 0.573965,
+    "lep": 0.42603500000000005,
+    "ler": 0.124434936979362
+  },
+  {
+    "ablation_id": "crafted",
+    "model": "mlp",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 42,
+    "train_time_s": 1.23,
+    "accuracy": 0.594685,
+    "lep": 0.405315,
+    "ler": 0.09622014043183931
+  },
+  {
+    "ablation_id": "crafted",
+    "model": "tabm",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 42,
+    "train_time_s": 348.64,
+    "accuracy": 0.67069,
+    "lep": 0.32931,
+    "ler": 0.03922902319668847
+  },
+  {
+    "ablation_id": "crafted",
+    "model": "tabr",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 42,
+    "train_time_s": 933.1,
+    "accuracy": 0.67129,
+    "lep": 0.32870999999999995,
+    "ler": 0.039008633943273
+  },
+  {
+    "ablation_id": "crafted",
+    "model": "xgboost",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 42,
+    "train_time_s": 52.72,
+    "accuracy": 0.672575,
+    "lep": 0.32742499999999997,
+    "ler": 0.03886817426014253
+  },
+  {
+    "ablation_id": "crafted",
+    "model": "lightgbm",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 42,
+    "train_time_s": 200.01,
+    "accuracy": 0.675415,
+    "lep": 0.324585,
+    "ler": 0.037353627088650046
+  },
+  {
+    "ablation_id": "crafted",
+    "model": "catboost",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 42,
+    "train_time_s": 728.76,
+    "accuracy": 0.674075,
+    "lep": 0.325925,
+    "ler": 0.038152832671754455
+  },
+  {
+    "ablation_id": "crafted",
+    "model": "tabiclv2",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 42,
+    "train_time_s": 0.85,
+    "accuracy": 0.654845,
+    "lep": 0.345155,
+    "ler": 0.04629961789342749
+  },
+  {
+    "ablation_id": "crafted",
+    "model": "tabpfnv2",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 42,
+    "train_time_s": 0.46,
+    "accuracy": 0.655375,
+    "lep": 0.34462499999999996,
+    "ler": 0.04602162630574921
+  },
+  {
+    "ablation_id": "lstm_only",
+    "model": "mlp",
+    "feature_groups": [
+      "lstm"
+    ],
+    "n_features": 24,
+    "train_time_s": 0.72,
+    "accuracy": 0.774955,
+    "lep": 0.22504500000000005,
+    "ler": 0.016651199423117935
+  },
+  {
+    "ablation_id": "lstm_only",
+    "model": "tabm",
+    "feature_groups": [
+      "lstm"
+    ],
+    "n_features": 24,
+    "train_time_s": 54.51,
+    "accuracy": 0.78972,
+    "lep": 0.21028000000000002,
+    "ler": 0.014512294117811344
+  },
+  {
+    "ablation_id": "lstm_only",
+    "model": "tabr",
+    "feature_groups": [
+      "lstm"
+    ],
+    "n_features": 24,
+    "train_time_s": 937.53,
+    "accuracy": 0.78827,
+    "lep": 0.21172999999999997,
+    "ler": 0.014657531327965385
+  },
+  {
+    "ablation_id": "lstm_only",
+    "model": "xgboost",
+    "feature_groups": [
+      "lstm"
+    ],
+    "n_features": 24,
+    "train_time_s": 21.74,
+    "accuracy": 0.78964,
+    "lep": 0.21036,
+    "ler": 0.014507393495124839
+  },
+  {
+    "ablation_id": "lstm_only",
+    "model": "lightgbm",
+    "feature_groups": [
+      "lstm"
+    ],
+    "n_features": 24,
+    "train_time_s": 30.89,
+    "accuracy": 0.789615,
+    "lep": 0.21038500000000004,
+    "ler": 0.014515015230367427
+  },
+  {
+    "ablation_id": "lstm_only",
+    "model": "catboost",
+    "feature_groups": [
+      "lstm"
+    ],
+    "n_features": 24,
+    "train_time_s": 400.69,
+    "accuracy": 0.7896,
+    "lep": 0.21040000000000003,
+    "ler": 0.014508225344439452
+  },
+  {
+    "ablation_id": "lstm_only",
+    "model": "tabiclv2",
+    "feature_groups": [
+      "lstm"
+    ],
+    "n_features": 24,
+    "train_time_s": 0.68,
+    "accuracy": 0.57421,
+    "lep": 0.42579,
+    "ler": 0.12443493243378617
+  },
+  {
+    "ablation_id": "lstm_only",
+    "model": "tabpfnv2",
+    "feature_groups": [
+      "lstm"
+    ],
+    "n_features": 24,
+    "train_time_s": 0.34,
+    "accuracy": 0.789085,
+    "lep": 0.21091499999999996,
+    "ler": 0.014546264583404824
+  },
+  {
+    "ablation_id": "lstm_no_temporal",
+    "model": "mlp",
+    "feature_groups": [
+      "lstm",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 50,
+    "train_time_s": 3.51,
+    "accuracy": 0.783325,
+    "lep": 0.21667499999999995,
+    "ler": 0.015388373551032212
+  },
+  {
+    "ablation_id": "lstm_no_temporal",
+    "model": "tabm",
+    "feature_groups": [
+      "lstm",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 50,
+    "train_time_s": 83.75,
+    "accuracy": 0.79237,
+    "lep": 0.20762999999999998,
+    "ler": 0.014234170045222021
+  },
+  {
+    "ablation_id": "lstm_no_temporal",
+    "model": "tabr",
+    "feature_groups": [
+      "lstm",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 50,
+    "train_time_s": 927.95,
+    "accuracy": 0.78489,
+    "lep": 0.21511000000000002,
+    "ler": 0.015044547991848675
+  },
+  {
+    "ablation_id": "lstm_no_temporal",
+    "model": "xgboost",
+    "feature_groups": [
+      "lstm",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 50,
+    "train_time_s": 16.23,
+    "accuracy": 0.79,
+    "lep": 0.20999999999999996,
+    "ler": 0.014500467510075995
+  },
+  {
+    "ablation_id": "lstm_no_temporal",
+    "model": "lightgbm",
+    "feature_groups": [
+      "lstm",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 50,
+    "train_time_s": 100.8,
+    "accuracy": 0.79159,
+    "lep": 0.20840999999999998,
+    "ler": 0.014335421841517825
+  },
+  {
+    "ablation_id": "lstm_no_temporal",
+    "model": "catboost",
+    "feature_groups": [
+      "lstm",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 50,
+    "train_time_s": 1329.01,
+    "accuracy": 0.792505,
+    "lep": 0.20749499999999999,
+    "ler": 0.014237436974110392
+  },
+  {
+    "ablation_id": "lstm_no_temporal",
+    "model": "tabiclv2",
+    "feature_groups": [
+      "lstm",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 50,
+    "train_time_s": 4.75,
+    "accuracy": 0.57421,
+    "lep": 0.42579,
+    "ler": 0.12443493243378617
+  },
+  {
+    "ablation_id": "lstm_no_temporal",
+    "model": "tabpfnv2",
+    "feature_groups": [
+      "lstm",
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 50,
+    "train_time_s": 5.96,
+    "accuracy": 0.78959,
+    "lep": 0.21040999999999999,
+    "ler": 0.01457446006131482
+  },
+  {
+    "ablation_id": "no_temporal",
+    "model": "mlp",
+    "feature_groups": [
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 26,
+    "train_time_s": 0.73,
+    "accuracy": 0.573635,
+    "lep": 0.426365,
+    "ler": 0.12408998796207618
+  },
+  {
+    "ablation_id": "no_temporal",
+    "model": "tabm",
+    "feature_groups": [
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 26,
+    "train_time_s": 422.6,
+    "accuracy": 0.663755,
+    "lep": 0.336245,
+    "ler": 0.04224711064718069
+  },
+  {
+    "ablation_id": "no_temporal",
+    "model": "tabr",
+    "feature_groups": [
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 26,
+    "train_time_s": 708.77,
+    "accuracy": 0.657545,
+    "lep": 0.34245499999999995,
+    "ler": 0.045810358098286506
+  },
+  {
+    "ablation_id": "no_temporal",
+    "model": "xgboost",
+    "feature_groups": [
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 26,
+    "train_time_s": 21.93,
+    "accuracy": 0.66961,
+    "lep": 0.33038999999999996,
+    "ler": 0.04013849077611275
+  },
+  {
+    "ablation_id": "no_temporal",
+    "model": "lightgbm",
+    "feature_groups": [
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 26,
+    "train_time_s": 59.59,
+    "accuracy": 0.673805,
+    "lep": 0.326195,
+    "ler": 0.038897045742927946
+  },
+  {
+    "ablation_id": "no_temporal",
+    "model": "catboost",
+    "feature_groups": [
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 26,
+    "train_time_s": 662.26,
+    "accuracy": 0.67055,
+    "lep": 0.32945,
+    "ler": 0.03989075139898297
+  },
+  {
+    "ablation_id": "no_temporal",
+    "model": "tabiclv2",
+    "feature_groups": [
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 26,
+    "train_time_s": 0.65,
+    "accuracy": 0.651835,
+    "lep": 0.34816499999999995,
+    "ler": 0.048505175738555596
+  },
+  {
+    "ablation_id": "no_temporal",
+    "model": "tabpfnv2",
+    "feature_groups": [
+      "rates",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 26,
+    "train_time_s": 0.32,
+    "accuracy": 0.65511,
+    "lep": 0.34489000000000003,
+    "ler": 0.046631486797605086
+  },
+  {
+    "ablation_id": "no_rates",
+    "model": "mlp",
+    "feature_groups": [
+      "temporal",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 0.77,
+    "accuracy": 0.581695,
+    "lep": 0.41830500000000004,
+    "ler": 0.10546243877520271
+  },
+  {
+    "ablation_id": "no_rates",
+    "model": "tabm",
+    "feature_groups": [
+      "temporal",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 268.13,
+    "accuracy": 0.671295,
+    "lep": 0.328705,
+    "ler": 0.03913541740510699
+  },
+  {
+    "ablation_id": "no_rates",
+    "model": "tabr",
+    "feature_groups": [
+      "temporal",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 946.02,
+    "accuracy": 0.67266,
+    "lep": 0.32733999999999996,
+    "ler": 0.038836360000044576
+  },
+  {
+    "ablation_id": "no_rates",
+    "model": "xgboost",
+    "feature_groups": [
+      "temporal",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 33.55,
+    "accuracy": 0.670075,
+    "lep": 0.329925,
+    "ler": 0.0399651018000072
+  },
+  {
+    "ablation_id": "no_rates",
+    "model": "lightgbm",
+    "feature_groups": [
+      "temporal",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 64.36,
+    "accuracy": 0.671175,
+    "lep": 0.32882500000000003,
+    "ler": 0.0394426578758387
+  },
+  {
+    "ablation_id": "no_rates",
+    "model": "catboost",
+    "feature_groups": [
+      "temporal",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 380.29,
+    "accuracy": 0.664385,
+    "lep": 0.335615,
+    "ler": 0.042482037419593645
+  },
+  {
+    "ablation_id": "no_rates",
+    "model": "tabiclv2",
+    "feature_groups": [
+      "temporal",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 1.07,
+    "accuracy": 0.65165,
+    "lep": 0.34835000000000005,
+    "ler": 0.04870613471397731
+  },
+  {
+    "ablation_id": "no_rates",
+    "model": "tabpfnv2",
+    "feature_groups": [
+      "temporal",
+      "final",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 4.13,
+    "accuracy": 0.65414,
+    "lep": 0.34585999999999995,
+    "ler": 0.04744219987761617
+  },
+  {
+    "ablation_id": "no_final",
+    "model": "mlp",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 40,
+    "train_time_s": 1.57,
+    "accuracy": 0.600875,
+    "lep": 0.39912499999999995,
+    "ler": 0.08790024475764441
+  },
+  {
+    "ablation_id": "no_final",
+    "model": "tabm",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 40,
+    "train_time_s": 438.04,
+    "accuracy": 0.670715,
+    "lep": 0.32928500000000005,
+    "ler": 0.039618381958131124
+  },
+  {
+    "ablation_id": "no_final",
+    "model": "tabr",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 40,
+    "train_time_s": 927.11,
+    "accuracy": 0.67357,
+    "lep": 0.32643,
+    "ler": 0.03806985474617977
+  },
+  {
+    "ablation_id": "no_final",
+    "model": "xgboost",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 40,
+    "train_time_s": 28.75,
+    "accuracy": 0.671755,
+    "lep": 0.328245,
+    "ler": 0.03895539407691526
+  },
+  {
+    "ablation_id": "no_final",
+    "model": "lightgbm",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 40,
+    "train_time_s": 106.98,
+    "accuracy": 0.67496,
+    "lep": 0.32504,
+    "ler": 0.037531448127391384
+  },
+  {
+    "ablation_id": "no_final",
+    "model": "catboost",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 40,
+    "train_time_s": 760.04,
+    "accuracy": 0.67365,
+    "lep": 0.32635000000000003,
+    "ler": 0.0383823313389687
+  },
+  {
+    "ablation_id": "no_final",
+    "model": "tabiclv2",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 40,
+    "train_time_s": 0.83,
+    "accuracy": 0.654045,
+    "lep": 0.345955,
+    "ler": 0.04719011748586797
+  },
+  {
+    "ablation_id": "no_final",
+    "model": "tabpfnv2",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "code",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 40,
+    "train_time_s": 3.85,
+    "accuracy": 0.66408,
+    "lep": 0.33592,
+    "ler": 0.04229040259237304
+  },
+  {
+    "ablation_id": "no_code",
+    "model": "mlp",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 0.72,
+    "accuracy": 0.592895,
+    "lep": 0.40710500000000005,
+    "ler": 0.09718770097565807
+  },
+  {
+    "ablation_id": "no_code",
+    "model": "tabm",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 485.64,
+    "accuracy": 0.67233,
+    "lep": 0.32767,
+    "ler": 0.038608542110706884
+  },
+  {
+    "ablation_id": "no_code",
+    "model": "tabr",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 949.38,
+    "accuracy": 0.67186,
+    "lep": 0.32814,
+    "ler": 0.03887333551709049
+  },
+  {
+    "ablation_id": "no_code",
+    "model": "xgboost",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 17.49,
+    "accuracy": 0.67094,
+    "lep": 0.32906,
+    "ler": 0.039543663139121034
+  },
+  {
+    "ablation_id": "no_code",
+    "model": "lightgbm",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 32.79,
+    "accuracy": 0.672765,
+    "lep": 0.32723500000000005,
+    "ler": 0.03806789418312296
+  },
+  {
+    "ablation_id": "no_code",
+    "model": "catboost",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 866.6,
+    "accuracy": 0.673695,
+    "lep": 0.32630499999999996,
+    "ler": 0.03836016542743379
+  },
+  {
+    "ablation_id": "no_code",
+    "model": "tabiclv2",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 0.84,
+    "accuracy": 0.655645,
+    "lep": 0.34435499999999997,
+    "ler": 0.04633669622082344
+  },
+  {
+    "ablation_id": "no_code",
+    "model": "tabpfnv2",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "spatial",
+      "soft"
+    ],
+    "n_features": 39,
+    "train_time_s": 4.2,
+    "accuracy": 0.65745,
+    "lep": 0.34255,
+    "ler": 0.045791165561873015
+  },
+  {
+    "ablation_id": "no_spatial",
+    "model": "mlp",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "soft"
+    ],
+    "n_features": 32,
+    "train_time_s": 0.71,
+    "accuracy": 0.55709,
+    "lep": 0.44291,
+    "ler": 0.13908190424372183
+  },
+  {
+    "ablation_id": "no_spatial",
+    "model": "tabm",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "soft"
+    ],
+    "n_features": 32,
+    "train_time_s": 307.43,
+    "accuracy": 0.67117,
+    "lep": 0.32882999999999996,
+    "ler": 0.0389097883418334
+  },
+  {
+    "ablation_id": "no_spatial",
+    "model": "tabr",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "soft"
+    ],
+    "n_features": 32,
+    "train_time_s": 952.84,
+    "accuracy": 0.675465,
+    "lep": 0.324535,
+    "ler": 0.037405253035893496
+  },
+  {
+    "ablation_id": "no_spatial",
+    "model": "xgboost",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "soft"
+    ],
+    "n_features": 32,
+    "train_time_s": 29.24,
+    "accuracy": 0.66879,
+    "lep": 0.33121,
+    "ler": 0.0401099294140781
+  },
+  {
+    "ablation_id": "no_spatial",
+    "model": "lightgbm",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "soft"
+    ],
+    "n_features": 32,
+    "train_time_s": 194.74,
+    "accuracy": 0.672465,
+    "lep": 0.327535,
+    "ler": 0.038927501672847524
+  },
+  {
+    "ablation_id": "no_spatial",
+    "model": "catboost",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "soft"
+    ],
+    "n_features": 32,
+    "train_time_s": 1263.42,
+    "accuracy": 0.670575,
+    "lep": 0.32942499999999997,
+    "ler": 0.039435088916215784
+  },
+  {
+    "ablation_id": "no_spatial",
+    "model": "tabiclv2",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "soft"
+    ],
+    "n_features": 32,
+    "train_time_s": 0.77,
+    "accuracy": 0.65733,
+    "lep": 0.34267000000000003,
+    "ler": 0.04529792101097456
+  },
+  {
+    "ablation_id": "no_spatial",
+    "model": "tabpfnv2",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "soft"
+    ],
+    "n_features": 32,
+    "train_time_s": 2.15,
+    "accuracy": 0.661125,
+    "lep": 0.33887500000000004,
+    "ler": 0.04363096100131104
+  },
+  {
+    "ablation_id": "no_soft",
+    "model": "mlp",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial"
+    ],
+    "n_features": 34,
+    "train_time_s": 1.54,
+    "accuracy": 0.60183,
+    "lep": 0.39817,
+    "ler": 0.0881782185624069
+  },
+  {
+    "ablation_id": "no_soft",
+    "model": "tabm",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial"
+    ],
+    "n_features": 34,
+    "train_time_s": 370.01,
+    "accuracy": 0.66755,
+    "lep": 0.33245,
+    "ler": 0.040340927029872485
+  },
+  {
+    "ablation_id": "no_soft",
+    "model": "tabr",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial"
+    ],
+    "n_features": 34,
+    "train_time_s": 725.16,
+    "accuracy": 0.662735,
+    "lep": 0.33726500000000004,
+    "ler": 0.04283831025973707
+  },
+  {
+    "ablation_id": "no_soft",
+    "model": "xgboost",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial"
+    ],
+    "n_features": 34,
+    "train_time_s": 14.23,
+    "accuracy": 0.67174,
+    "lep": 0.32826,
+    "ler": 0.039394236746651934
+  },
+  {
+    "ablation_id": "no_soft",
+    "model": "lightgbm",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial"
+    ],
+    "n_features": 34,
+    "train_time_s": 89.49,
+    "accuracy": 0.672485,
+    "lep": 0.327515,
+    "ler": 0.03836027093825117
+  },
+  {
+    "ablation_id": "no_soft",
+    "model": "catboost",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial"
+    ],
+    "n_features": 34,
+    "train_time_s": 689.68,
+    "accuracy": 0.670915,
+    "lep": 0.32908499999999996,
+    "ler": 0.039387733856693
+  },
+  {
+    "ablation_id": "no_soft",
+    "model": "tabiclv2",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial"
+    ],
+    "n_features": 34,
+    "train_time_s": 0.78,
+    "accuracy": 0.65297,
+    "lep": 0.34702999999999995,
+    "ler": 0.047689570050115065
+  },
+  {
+    "ablation_id": "no_soft",
+    "model": "tabpfnv2",
+    "feature_groups": [
+      "temporal",
+      "rates",
+      "final",
+      "code",
+      "spatial"
+    ],
+    "n_features": 34,
+    "train_time_s": 3.07,
+    "accuracy": 0.662735,
+    "lep": 0.33726500000000004,
+    "ler": 0.04287424900711156
+  }
+]

@@ -1,0 +1,7 @@
+name: LSTM
+description: Long Short-Term Memory (LSTM) network, specialized type of recurrent neural network. The architecture is a simplified version of the citation specified in this file.
+model_family: Neural-network-based
+license: Commons Clause License V1.0
+license_note: Inherited license from this code base
+citation: 'Boris M Varbanov, Marc Serra-Peralta, David Byfield, and Barbara M Terhal. Neural network decoder for near-term surface-code experiments. Physical Review Research, 7(1):013029, 2025.'
+parameter_configuration_file: experiments/configs/model/full-decoder/lstm.yaml

@@ -1,0 +1,6 @@
+name: Catboost
+description: Gradient-boosting decision tree utilising unbiased boosting with categorical features.
+model_family: GBDT
+license: Apache License 2.0
+citation: 'Liudmila Prokhorenkova, Gleb Gusev, Aleksandr Vorobev, Anna Veronika Dorogush, and Andrey Gulin. Catboost: unbiased boosting with categorical features. In S. Bengio, H. Wallach, H. Larochelle, K. Grauman, N. Cesa-Bianchi, and R. Garnett, editors, Advances in Neural Information Processing Systems, volume 31. Curran Associates, Inc., 2018. URL https://proceedings.neurips.cc/paper_files/paper/2018/file/14491b756b3a51daac41c24863285549-Paper.pdf.'
+parameter_configuration_file: experiments/configs/model/full-decoder/catboost.yaml

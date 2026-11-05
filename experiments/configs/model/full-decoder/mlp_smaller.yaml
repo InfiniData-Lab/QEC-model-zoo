@@ -1,0 +1,51 @@
+model: MLP
+hyperparameters:
+    num_layers:
+        default: 3
+        value_type: int
+        range:
+        - 2
+        - 5
+    hidden_size:
+        default: 256
+        value_type: int
+        range:
+        - 10
+        - 100
+    dropout:
+        default: 0.0
+        value_type: float
+        range:
+        - 0.0
+        - 0.5
+    patience:
+        default: 20
+        value_type: ignore
+    learning_rate:
+        default: 0.0005
+        value_type: float
+        range:
+        - 0.0005
+        - 0.001
+    weight_decay:
+        default: 0.001
+        value_type: float
+        log_scale: true
+        range:
+        - 0.0001
+        - 0.1
+    optimizer:
+        default: AdamW
+        value_type: ignore
+    loss_function:
+        default: Cross Entropy
+        value_type: ignore
+    batch_size:
+        default: 64
+        value_type: ignore
+    epochs:
+        default: 500
+        value_type: ignore
+    activation:
+        default: relu
+        value_type: ignore

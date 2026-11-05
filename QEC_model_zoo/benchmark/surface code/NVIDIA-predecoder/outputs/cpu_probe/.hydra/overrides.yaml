@@ -1,0 +1,4 @@
+- workflow.task=inference
+- +exp_tag=cpu_probe
+- +model_checkpoint_file=saved predecoder models/Ising-Decoder-SurfaceCode-1-Fast.pt
+- +test.num_samples=256

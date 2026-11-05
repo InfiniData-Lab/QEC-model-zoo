@@ -1,0 +1,120 @@
+{
+  "n_runs": 6,
+  "runs": [
+    {
+      "source": "/Users/anonymous/Documents/projects/QEC-decoding-model-zoo/QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run1/logs/inference.console.log",
+      "basis": "Z",
+      "density_reduction_pct": 81.59,
+      "chromobius_speedup": 3.4722,
+      "shots": 4096,
+      "rounds": 5,
+      "pd_errors": 133,
+      "baseline_errors": 214,
+      "pd_ler_per_round": 0.006494140625,
+      "baseline_ler_per_round": 0.01044921875,
+      "ler_improvement": 1.6090225563909775
+    },
+    {
+      "source": "/Users/anonymous/Documents/projects/QEC-decoding-model-zoo/QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run2/logs/inference.console.log",
+      "basis": "Z",
+      "density_reduction_pct": 81.67,
+      "chromobius_speedup": 3.4134,
+      "shots": 4096,
+      "rounds": 5,
+      "pd_errors": 140,
+      "baseline_errors": 198,
+      "pd_ler_per_round": 0.0068359375,
+      "baseline_ler_per_round": 0.00966796875,
+      "ler_improvement": 1.4142857142857144
+    },
+    {
+      "source": "/Users/anonymous/Documents/projects/QEC-decoding-model-zoo/QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run3/logs/inference.console.log",
+      "basis": "Z",
+      "density_reduction_pct": 81.86,
+      "chromobius_speedup": 3.3473,
+      "shots": 4096,
+      "rounds": 5,
+      "pd_errors": 133,
+      "baseline_errors": 207,
+      "pd_ler_per_round": 0.006494140625,
+      "baseline_ler_per_round": 0.010107421875,
+      "ler_improvement": 1.556390977443609
+    },
+    {
+      "source": "/Users/anonymous/Documents/projects/QEC-decoding-model-zoo/QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run4/logs/inference.console.log",
+      "basis": "Z",
+      "density_reduction_pct": 81.89,
+      "chromobius_speedup": 3.4731,
+      "shots": 4096,
+      "rounds": 5,
+      "pd_errors": 126,
+      "baseline_errors": 180,
+      "pd_ler_per_round": 0.00615234375,
+      "baseline_ler_per_round": 0.0087890625,
+      "ler_improvement": 1.4285714285714286
+    },
+    {
+      "source": "/Users/anonymous/Documents/projects/QEC-decoding-model-zoo/QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run5/logs/inference.console.log",
+      "basis": "Z",
+      "density_reduction_pct": 81.49,
+      "chromobius_speedup": 3.3318,
+      "shots": 4096,
+      "rounds": 5,
+      "pd_errors": 139,
+      "baseline_errors": 178,
+      "pd_ler_per_round": 0.006787109375,
+      "baseline_ler_per_round": 0.00869140625,
+      "ler_improvement": 1.2805755395683454
+    },
+    {
+      "source": "/Users/anonymous/Documents/projects/QEC-decoding-model-zoo/QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run6/logs/inference.console.log",
+      "basis": "Z",
+      "density_reduction_pct": 82.12,
+      "chromobius_speedup": 3.4009,
+      "shots": 4096,
+      "rounds": 5,
+      "pd_errors": 116,
+      "baseline_errors": 167,
+      "pd_ler_per_round": 0.0056640625,
+      "baseline_ler_per_round": 0.008154296875,
+      "ler_improvement": 1.4396551724137931
+    }
+  ],
+  "summary": [
+    {
+      "basis": "Z",
+      "metric": "pd_ler_per_round",
+      "n": 6,
+      "mean": 0.0064046223958333336,
+      "std": 0.0004382760567224258
+    },
+    {
+      "basis": "Z",
+      "metric": "baseline_ler_per_round",
+      "n": 6,
+      "mean": 0.009309895833333333,
+      "std": 0.0009001695826379106
+    },
+    {
+      "basis": "Z",
+      "metric": "ler_improvement",
+      "n": 6,
+      "mean": 1.4547502314456446,
+      "std": 0.11577407521349645
+    },
+    {
+      "basis": "Z",
+      "metric": "chromobius_speedup",
+      "n": 6,
+      "mean": 3.40645,
+      "std": 0.05985939358196006
+    },
+    {
+      "basis": "Z",
+      "metric": "density_reduction_pct",
+      "n": 6,
+      "mean": 81.77,
+      "std": 0.23056452459127555
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+experiment_name: "inference_full_decoders_neural_models_googled25"
+dataset_id: 'datasets/croissant/04_google_repetition_d25.json'
+experiment_type: inference
+decoder_type: 'full-decoder'
+random_seed: 42
+repetitions: 30
+decoder_configs:
+  - param_path: "experiments/model_checkpoints/train_full_decoders_neural_models_googled25/mlp/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_neural_models_googled25/mlp/checkpoint_best.pt"
+  - param_path: "experiments/model_checkpoints/train_full_decoders_neural_models_googled25/tabm/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_neural_models_googled25/tabm/checkpoint_best.pt"
+  - param_path: "experiments/model_checkpoints/train_full_decoders_neural_models_googled25/tabr/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_neural_models_googled25/tabr/checkpoint_best.pt"

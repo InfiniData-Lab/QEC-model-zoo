@@ -1,0 +1,28 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Downloading from Hugging Face Hub: Dreamworldsmile/ntu-surface-code-decoder/bb/bb72_transformer.pt
+=== BB Transformer Evaluation | block_size=72 l=6 m=6 rounds=6 p=0.005 ===
+    device=cuda:0  shots=10000  batch_size=64
+    num_stab=72  num_t=7  total_det=432  n_logicals=12
+    model params: 35.98M
+    loading checkpoint: /home/Yuandou/.cache/huggingface/hub/models--Dreamworldsmile--ntu-surface-code-decoder/snapshots/a97a6cdb348d939f7658f00b136fb3d88c68b6c8/bb/bb72_transformer.pt
+    transferred 132 tensors (missing=1, unexpected=0)
+    checkpoint step: 10500
+    checkpoint block_acc: 92.285%
+    [1024/10000 samples | 10.2%]  block_acc=92.090%  rate=121 samp/s
+    [2048/10000 samples | 20.5%]  block_acc=92.041%  rate=124 samp/s
+    [3008/10000 samples | 30.1%]  block_acc=91.556%  rate=127 samp/s
+    [4032/10000 samples | 40.3%]  block_acc=91.319%  rate=127 samp/s
+    [5056/10000 samples | 50.6%]  block_acc=91.278%  rate=127 samp/s
+    [6016/10000 samples | 60.2%]  block_acc=91.390%  rate=127 samp/s
+    [7040/10000 samples | 70.4%]  block_acc=91.577%  rate=127 samp/s
+    [8000/10000 samples | 80.0%]  block_acc=91.663%  rate=128 samp/s
+    [9024/10000 samples | 90.2%]  block_acc=91.478%  rate=128 samp/s
+    [10000/10000 samples | 100.0%]  block_acc=91.620%  rate=128 samp/s
+    === Results ===
+    total_samples: 10000
+    block_acc:     91.620000%
+    LER:           8.380000e-02
+    per_log_mean:  97.122%
+    per_log_worst: 96.120%
+    elapsed:       78.4s  rate: 128 samp/s
+    Results saved to bb72_transformer_eval_r6_p0.005.csv

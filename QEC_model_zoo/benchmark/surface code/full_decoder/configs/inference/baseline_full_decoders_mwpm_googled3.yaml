@@ -1,0 +1,6 @@
+experiment_name: "baseline_full_decoders_mwpm_googled3"
+dataset_id: 'datasets/croissant/02_google_surface_d3.json'
+experiment_type: baseline
+decoder_type: 'full-decoder'
+random_seed: 42
+repetitions: 30

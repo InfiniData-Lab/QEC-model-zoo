@@ -1,0 +1,28 @@
+{
+  "config": {
+    "distance": 5,
+    "p": 0.004999999888241291,
+    "raw_data_path": "data/generated/raw_d5_r5_p0005.npz",
+    "rounds": 5,
+    "shots": 50000,
+    "test_shots": 7500,
+    "train_shots": 35000,
+    "val_shots": 7500
+  },
+  "kind": "mwpm",
+  "test": {
+    "accuracy": 0.9830666666666666,
+    "balanced_accuracy": 0.9741193117519915,
+    "error_rate": 0.016933333333333356,
+    "fn": 73,
+    "fp": 54,
+    "num_examples": 7500,
+    "positive_label_fraction": 0.22946666666666668,
+    "precision": 0.9682726204465335,
+    "predicted_positive_fraction": 0.22693333333333332,
+    "recall": 0.957582800697269,
+    "specificity": 0.9906558228067139,
+    "tn": 5725,
+    "tp": 1648
+  }
+}

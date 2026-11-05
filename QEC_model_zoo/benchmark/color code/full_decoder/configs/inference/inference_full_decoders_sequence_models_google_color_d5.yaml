@@ -1,0 +1,9 @@
+experiment_name: "inference_full_decoders_sequence_models_google_color_d5"
+dataset_id: 'datasets/croissant/07_google_color_d5.json'
+experiment_type: inference
+decoder_type: 'full-decoder'
+random_seed: 42
+repetitions: 30
+decoder_configs:
+  - param_path: "experiments/model_checkpoints/train_full_decoders_sequence_models_google_color_d5/lstm/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_sequence_models_google_color_d5/lstm/checkpoint_best.pt"

@@ -1,0 +1,21 @@
+experiment_name: "train_full_decoders_tree_models_googled25"
+dataset_id: 'datasets/croissant/04_google_repetition_d25.json'
+experiment_type: train
+decoder_type: 'full-decoder'
+random_seed: 42
+tuning_config:
+  max_trials: 500
+  early_stopping: true
+  patience: 50
+  minimize_metric: lep
+  tuning_method: tpe
+decoder_configs:
+  - params_path: "experiments/configs/model/full-decoder/catboost.yaml"
+    params_save_path: "experiments/model_checkpoints/train_full_decoders_tree_models_googled25/catboost/params.yaml"
+    checkpoint_save_path: "experiments/model_checkpoints/train_full_decoders_tree_models_googled25/catboost/checkpoint_best.cbm"
+  - params_path: "experiments/configs/model/full-decoder/xgboost.yaml"
+    params_save_path: "experiments/model_checkpoints/train_full_decoders_tree_models_googled25/xgboost/params.yaml"
+    checkpoint_save_path: "experiments/model_checkpoints/train_full_decoders_tree_models_googled25/xgboost/checkpoint_best.json"
+  - params_path: "experiments/configs/model/full-decoder/lightgbm.yaml"
+    params_save_path: "experiments/model_checkpoints/train_full_decoders_tree_models_googled25/lightgbm/params.yaml"
+    checkpoint_save_path: "experiments/model_checkpoints/train_full_decoders_tree_models_googled25/lightgbm/checkpoint_best.txt"

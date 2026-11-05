@@ -1,0 +1,4 @@
+# Track large model binaries with Git LFS.
+# NOTE: gitattributes patterns cannot contain spaces, and the checkpoints live in
+# "saved predecoder models/" (a path with spaces), so we match by filename glob instead.
+experiments/model_checkpoints/** filter=lfs diff=lfs merge=lfs -text

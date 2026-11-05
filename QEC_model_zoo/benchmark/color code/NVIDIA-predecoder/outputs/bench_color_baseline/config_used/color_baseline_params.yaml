@@ -1,0 +1,7 @@
+code: color
+workflow:
+  task: baseline_benchmark
+distances: [3, 5, 7]
+p_values: [0.004, 0.008]
+shots: 20000
+global_decoder: chromobius

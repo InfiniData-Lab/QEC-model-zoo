@@ -1,0 +1,7 @@
+LER is per round; speedup is Chromobius decoder-only; std is across runs.
+Basis  Metric                        n         mean          std
+Z      pd_ler_per_round              6   0.00640462  0.000438276
+Z      baseline_ler_per_round        6    0.0093099   0.00090017
+Z      ler_improvement               6      1.45475     0.115774
+Z      chromobius_speedup            6      3.40645    0.0598594
+Z      density_reduction_pct         6        81.77     0.230565

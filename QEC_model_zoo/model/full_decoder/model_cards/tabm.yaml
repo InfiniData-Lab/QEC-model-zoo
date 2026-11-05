@@ -1,0 +1,6 @@
+name: TabM
+description: Neural-network based tabular learner with parameter-efficient ensembling.
+model_family: Neural-network-based
+license: Apache License 2.0
+citation: 'Yury Gorishniy, Akim Kotelnikov, and Artem Babenko. Tabm: Advancing tabular deep learning with parameter-efficient ensembling. arXiv preprint arXiv:2410.24210, 2024.'
+parameter_configuration_file: experiments/configs/model/full-decoder/tabm.yaml

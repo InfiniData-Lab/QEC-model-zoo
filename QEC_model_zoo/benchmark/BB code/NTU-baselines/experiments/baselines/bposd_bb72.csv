@@ -1,0 +1,2 @@
+config,p,total_samples,correct,errors,acc,ler,time_s,wall_us_per_sample,seed,workers,chunk_samples,max_iter,osd_order,bp_method,osd_method,dem_path
+bposd2d,0.005,80,64,16,0.80000000,0.20000000,18.473,230918.103,20265528,8,10,12,10,product_sum,osd_cs,data/dems/72_12_6_0.005.dem

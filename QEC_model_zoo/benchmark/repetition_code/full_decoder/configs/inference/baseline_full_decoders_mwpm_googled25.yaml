@@ -1,0 +1,6 @@
+experiment_name: "baseline_full_decoders_mwpm_googled25"
+dataset_id: 'datasets/croissant/04_google_repetition_d25.json'
+experiment_type: baseline
+decoder_type: 'full-decoder'
+random_seed: 42
+repetitions: 30

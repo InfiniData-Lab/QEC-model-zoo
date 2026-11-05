@@ -1,0 +1,33 @@
+model: TabR
+hyperparameters:
+    emb_dim:
+        default: 128
+        value_type: int
+        range: [128, 1024]
+    hidden_dim:
+        default: 256
+        value_type: int
+        range: [128, 1024]
+    k:
+        default: 32
+        value_type: ignore
+    tau:
+        default: 0.1
+        value_type: ignore
+    patience:
+        default: 20
+        value_type: ignore
+    learning_rate:
+        default: 0.001
+        value_type: float
+        range: [0.0001, 0.01]
+    dropout:
+        default: 0.0
+        value_type: float
+        range: [0.0, 0.5]
+    epochs:
+        default: 500
+        value_type: ignore
+    batch_size:
+        default: 128
+        value_type: ignore

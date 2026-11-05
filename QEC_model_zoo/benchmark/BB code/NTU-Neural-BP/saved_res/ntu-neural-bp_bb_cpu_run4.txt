@@ -1,0 +1,24 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Downloading from Hugging Face Hub: Dreamworldsmile/ntu-surface-code-decoder/bb/neural_bp_bb72.pt
+=== Neural-BP Evaluation | block_size=72 rounds=6 p=0.005 ===
+    device=cpu  shots=1000  hidden_dim=128  num_iter=12
+    Using existing DEM: data/ldpc/72_12_6_0.005.dem
+    DEM: 432 checks × 16164 vars, 12 logicals
+    model params: 298.2K
+    loading checkpoint: /home/Yuandou/.cache/huggingface/hub/models--Dreamworldsmile--ntu-surface-code-decoder/snapshots/a97a6cdb348d939f7658f00b136fb3d88c68b6c8/bb/neural_bp_bb72.pt
+    [128/1000 samples | 12.8%]  block_acc=85.156%  rate=2 samp/s
+    [256/1000 samples | 25.6%]  block_acc=83.203%  rate=2 samp/s
+    [384/1000 samples | 38.4%]  block_acc=83.073%  rate=2 samp/s
+    [512/1000 samples | 51.2%]  block_acc=83.008%  rate=2 samp/s
+    [640/1000 samples | 64.0%]  block_acc=82.969%  rate=2 samp/s
+    [768/1000 samples | 76.8%]  block_acc=84.375%  rate=2 samp/s
+    [896/1000 samples | 89.6%]  block_acc=85.045%  rate=2 samp/s
+    [1000/1000 samples | 100.0%]  block_acc=85.500%  rate=2 samp/s
+    === Results ===
+    total_samples: 1000
+    block_acc:     85.500000%
+    LER:           1.450000e-01
+    per_log_mean:  94.192%
+    per_log_worst: 92.000%
+    elapsed:       414.9s  rate: 2 samp/s
+    Results saved to bb72_neuralbp_eval_r6_p0.005.csv

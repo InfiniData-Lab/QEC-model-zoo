@@ -1,0 +1,38 @@
+model: TabICLV2
+hyperparameters:
+    n_estimators:
+        default: 4
+        value_type: ignore
+    norm_methods:
+        default: robust
+        value_type: ignore
+    feat_shuffle_method:
+        default: latin
+        value_type: ignore
+    class_shuffle_method:
+        default: none
+        value_type: ignore
+    outlier_threshold:
+        default: 7.0
+        value_type: ignore
+    softmax_temperature:
+        default: 0.7
+        value_type: ignore
+    batch_size:
+        default: 2
+        value_type: ignore
+    batch_size_inference:
+        default: 4096
+        value_type: ignore
+    kv_cache:
+        default: repr
+        value_type: ignore
+    use_amp:
+        default: auto
+        value_type: ignore
+    offload_mode:
+        default: auto
+        value_type: ignore
+    max_context:
+        default: 16384
+        value_type: ignore

@@ -1,0 +1,15 @@
+experiment_name: "train_full_decoders_neural_models_googled5"
+dataset_id: 'datasets/croissant/03_google_surface_d5.json'
+experiment_type: train
+decoder_type: 'full-decoder'
+random_seed: 42
+decoder_configs:
+  - params_path: "experiments/configs/model/full-decoder/mlp.yaml"
+    params_save_path: "experiments/model_checkpoints/train_full_decoders_neural_models_googled5/mlp/params.yaml"
+    checkpoint_save_path: "experiments/model_checkpoints/train_full_decoders_neural_models_googled5/mlp/checkpoint_best.pt"
+  - params_path: "experiments/configs/model/full-decoder/tabm.yaml"
+    params_save_path: "experiments/model_checkpoints/train_full_decoders_neural_models_googled5/tabm/params.yaml"
+    checkpoint_save_path: "experiments/model_checkpoints/train_full_decoders_neural_models_googled5/tabm/checkpoint_best.pt"
+  - params_path: "experiments/configs/model/full-decoder/tabr.yaml"
+    params_save_path: "experiments/model_checkpoints/train_full_decoders_neural_models_googled5/tabr/params.yaml"
+    checkpoint_save_path: "experiments/model_checkpoints/train_full_decoders_neural_models_googled5/tabr/checkpoint_best.pt"

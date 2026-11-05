@@ -1,0 +1,9 @@
+experiment_name: "inference_full_decoders_tfm_models_googled5"
+dataset_id: 'datasets/croissant/03_google_surface_d5.json'
+experiment_type: inference_tfm
+decoder_type: 'full-decoder'
+random_seed: 42
+repetitions: 30
+decoder_configs:
+  - param_path: "experiments/configs/model/full-decoder/tabpfnv2.yaml"
+  - param_path: "experiments/configs/model/full-decoder/tabiclv2.yaml"

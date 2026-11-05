@@ -1,0 +1,13 @@
+experiment_name: "inference_full_decoders_neural_models_dicarlo"
+dataset_id: 'datasets/croissant/01_dicarlo.json'
+experiment_type: inference
+decoder_type: 'full-decoder'
+random_seed: 42
+repetitions: 30
+decoder_configs:
+  - param_path: "experiments/model_checkpoints/train_full_decoders_neural_models_dicarlo/mlp/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_neural_models_dicarlo/mlp/checkpoint_best.pt"
+  - param_path: "experiments/model_checkpoints/train_full_decoders_neural_models_dicarlo/tabm/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_neural_models_dicarlo/tabm/checkpoint_best.pt"
+  - param_path: "experiments/model_checkpoints/train_full_decoders_neural_models_dicarlo/tabr/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_neural_models_dicarlo/tabr/checkpoint_best.pt"

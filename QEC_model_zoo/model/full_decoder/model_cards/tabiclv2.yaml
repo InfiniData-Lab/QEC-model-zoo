@@ -1,0 +1,6 @@
+name: TabICLv2
+description: Tabular classification model with in-context-learning capabilities.
+model_family: Tabular Foundation Model
+license: BSD 3-Clause License
+citation: 'Jingang Qu, David Holzmüller, Gaël Varoquaux, and Marine Le Morvan. Tabiclv2: A better, faster, scalable, and open tabular foundation model, 2026. URL https://arxiv.org/abs/2602. 11139.'
+parameter_configuration_file: experiments/configs/model/full-decoder/tabiclv2.yaml

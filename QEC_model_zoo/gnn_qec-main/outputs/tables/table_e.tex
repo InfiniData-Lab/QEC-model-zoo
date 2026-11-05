@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{Summary of GNN results on synthetic surface-code datasets ($r=5$). MWPM (PyMatching) is evaluated on the same test shots. Gains are relative to the trivial LER.}
+\label{tab:gnn-surface-code}
+\begin{tabular}{rrrrrrrr}
+\hline
+$d$ & $p$ & Test shots & Trivial LER & GNN LER & MWPM LER & GNN gain & MWPM gain \\
+\hline
+3 & $5\times 10^{-4}$ & 7\,500 & 0.0213 & 0.0160 & 0.0018 & $1.33\times$ & $12.0\times$ \\
+3 & $1\times 10^{-3}$ & 7\,500 & 0.0347 & 0.0329 & 0.0018 & $1.05\times$ & $19.5\times$ \\
+3 & $5\times 10^{-3}$ & 15\,000 & 0.1493 & 0.1018 & 0.0280 & $1.47\times$ & $5.33\times$ \\
+3 & $1\times 10^{-2}$ & 7\,500 & 0.2453 & 0.2720 & 0.0996 & $0.90\times$ & $2.46\times$ \\
+5 & $5\times 10^{-3}$ & 7\,500 & 0.2418 & 0.2444 & 0.0187 & $0.99\times$ & $13.0\times$ \\
+7 & $5\times 10^{-3}$ & 15\,000 & 0.2862 & 0.2867 & 0.0058 & $1.00\times$ & $49.5\times$ \\
+\hline
+\end{tabular}
+\end{table}

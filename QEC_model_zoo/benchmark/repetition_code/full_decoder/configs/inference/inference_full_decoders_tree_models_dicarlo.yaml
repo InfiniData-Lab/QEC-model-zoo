@@ -1,0 +1,13 @@
+experiment_name: "inference_full_decoders_tree_models_dicarlo"
+dataset_id: 'datasets/croissant/01_dicarlo.json'
+experiment_type: inference
+decoder_type: 'full-decoder'
+random_seed: 42
+repetitions: 30
+decoder_configs:
+  - param_path: "experiments/model_checkpoints/train_full_decoders_tree_models_dicarlo/catboost/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_tree_models_dicarlo/catboost/checkpoint_best.cbm"
+  - param_path: "experiments/model_checkpoints/train_full_decoders_tree_models_dicarlo/lightgbm/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_tree_models_dicarlo/lightgbm/checkpoint_best.txt"
+  - param_path: "experiments/model_checkpoints/train_full_decoders_tree_models_dicarlo/xgboost/params.yaml"
+    checkpoint_path: "experiments/model_checkpoints/train_full_decoders_tree_models_dicarlo/xgboost/checkpoint_best.json"

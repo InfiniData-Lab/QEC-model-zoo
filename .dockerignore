@@ -1,0 +1,27 @@
+outputs/
+logs/
+frames_data/
+models/
+dev_history/
+.git/
+.venv*/
+venv/
+__pycache__/
+*.out
+*.err
+*.html
+
+# Datasets and generated outputs are bind-mounted at runtime, not baked
+# into the image (keeps the build context small and fast).
+datasets/*
+!datasets/dataset_catalog.yaml
+*.parquet
+*.npz
+*.sif
+*.pt
+experiments/logs/
+experiments/model_checkpoints/
+experiments/results/
+predecoders outputs/
+saved predecoder models/
+*.ipynb
