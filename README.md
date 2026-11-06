@@ -1,5 +1,5 @@
 # QEC Model Zoo
-This repository contains code and experiments for the QEC Model Zoo. We distinguish between full-decoders and pre-decoders in our experiments.
+This repository contains the code and experiments accompanying the paper **"QEC Model Zoo: Democratizing AI-enhanced Quantum Error Correction,"** accepted for publication at NeurIPS 2026.
 
 ## Repository Structure
 This section of the documentation explains the most important files and directories of the repository.
@@ -12,7 +12,7 @@ These checkpoints and parameters are then used to configure the inference experi
 After experiments are run, results will be saved to the [`experiments/results`](experiments/results/) directory.
 
 ### Datasets & Croissant Metadata
-Dataset files reside in the [`datasets`](datasets/) directory.
+Pre-processed dataset files reside in the [`datasets`](datasets/) directory.
 If this directory does not exist in the root of the project, you can download it through [Kaggle]('https://www.kaggle.com/datasets/infinidata/qec-model-zoo-data'), make sure the [`datasets`](datasets/) folder is located in the root of the project and has the following structure:
 ``` 
 datasets /
@@ -23,6 +23,12 @@ datasets /
 	dataset-metadata.json
 	dataset_catalog.yaml
 	README.md
+```
+
+Alternatively, you can download the pre-processed datasets from Kaggle through the CLI:
+```bash
+pip install kaggle
+kaggle datasets download infinidata/qec-model-zoo-data -p datasets --unzip
 ```
 
 For each dataset used to reproduce our results, we record its metadata, including licensing information in a croissant metadata file.
@@ -69,11 +75,23 @@ It is recommended to use Python 3.10 and a virtual environment (or conda) with t
 pip install -r requirements.txt
 ```
 
-Furthermore, a GPU with CUDA enabled is required to reproduce full-decoder results. Make sure that the pytorch version in the [`requirements.txt`](`requirements.txt`) file is aligned with your CUDA version.
+Furthermore, a GPU with CUDA enabled is required to reproduce full-decoder results. Make sure that the pytorch version and index url in the [`requirements.txt`](`requirements.txt`) file is aligned with your CUDA version, our requirements file is set up for CUDA 12.4 and Python 3.10.
 Note that for the usage of the full-decoder TabPFNv2, a token is required and should be set in your execution environment as an environment variable, for instructions on how to obtain a token, see [https://platform.priorlabs.ai/playground](https://platform.priorlabs.ai/playground).
+Also make sure that the pre-processed datasets are downloaded as described in section "Repository Structure" of this file.
 
 #### Running Training Experiments
-To train full-decoders on all datasets, you can run the following scripts:
+To reproduce our results, you can either use the pre-trained model checkpoints available in the [`experiments/model_checkpoints/`](experiments/model_checkpoints/) directory or train the models from scratch.
+
+The model checkpoints are stored using [Git Large File Storage (Git LFS)](https://git-lfs.com/). To ensure the checkpoints are downloaded correctly, install Git LFS and run:
+
+```bash
+git lfs install
+git lfs pull
+```
+
+The remainder of this section describes the procedure for training the models from scratch.
+
+To train full-decoders on all datasets, you can run the following shell scripts:
 - Repetition code: 
 	```bash
 	./"QEC_model_zoo/benchmark/repetition_code/full_decoder/train_full_decoders_repetition_code.sh"
@@ -103,7 +121,7 @@ To run inference experiments for full-decoders on all datasets, you can run the 
    ```bash
    ./"QEC_model_zoo/benchmark/surface code/full_decoder/inference_full_decoders_surface_code.sh"
    ```
-Keep in mind that the training experiment for a model/dataset pair must be run before the associated inference experiment.
+
 Results are saved to the [`experiments/results`](experiments/results/) directory.
 
 #### Running Feature Ablation
@@ -126,7 +144,6 @@ The hardware we use is 1 GPU of the Delft AI Cluster [2] with the following spec
 - Architecture: Ada Lovelace
 - CUDA cores: 18176
 - Memory: 49152 MiB
-
 
 ## Pre-Decoders
 The experimental code for the predecoders is sourced from https://github.com/NVIDIA/Ising-Decoding. 
@@ -183,8 +200,6 @@ These models can be downloaded with the MIT license. In `QEC_model_zoo/benchmark
 
 We note that the quantity reported as `LER` in the saved result files is in fact (1 - Block Acc), i.e., the logical error probability accumulated over all R=6 rounds. To obtain the per-round logical error rate $$\epsilon_L$$, we convert the LER per round by the formula $$\epsilon_L = \frac{1}{2}[1-(1-2P_{\mathrm{block}}(R))^{\frac{1}{R}}]$$. Additional analysis code for NTU decoders can be found in the [`QEC_model_zoo/analysis/QEC_ntu_decoders_LER per round.ipynb`](QEC_model_zoo/analysis/QEC_ntu_decoders_LER per round.ipynb) file.
 
-
-
 ## GNN 
 The experimental code for reproducing GNN decoding results included in our work can be found in the [`QEC_model_zoo/gnn_qec-main`](QEC_model_zoo/gnn_qec-main/) directory.
 To obtain these results we:
@@ -196,6 +211,26 @@ To obtain these results we:
  3. This outputs results to the [`QEC_model_zoo/gnn_qec-main/outputs/metrics`](QEC_model_zoo/gnn_qec-main/outputs/metrics/) directory.
 
 Additional code for analyzing and formatting these results can be found in the [`QEC_model_zoo/analysis/QEC_gnn_decoders_analysis.ipynb`](QEC_model_zoo/analysis/QEC_gnn_decoders_analysis.ipynb) file.
+
+## Citation
+
+If you use QEC Model Zoo, its datasets, or its pre-trained models in your research, please cite our paper:
+
+**Wang, Yuandou; de Groot, Max; Patwardhan, Aadi; Geerts, Floris; and Hai, Rihan.** (2026). **QEC Model Zoo: Democratizing AI-enhanced Quantum Error Correction.** *The Fortieth Annual Conference on Neural Information Processing Systems (NeurIPS 2026), Evaluations and Datasets Track.* Accepted, to appear.
+
+**BibTeX:**
+
+```bibtex
+@inproceedings{wang2026qecmodelzoo,
+  title={{QEC} Model Zoo: Democratizing {AI}-enhanced Quantum Error Correction},
+  author={Wang, Yuandou and de Groot, Max and Patwardhan, Aadi and Geerts, Floris and Hai, Rihan},
+  booktitle={The Fortieth Annual Conference on Neural Information Processing Systems Evaluations and Datasets Track},
+  year={2026},
+  note={Accepted at NeurIPS 2026; to appear}
+}
+```
+
+When using individual datasets from this collection, please also cite their original publications, as documented in the corresponding Croissant metadata files.
 
 ## References
 [1] Takuya Akiba, Shotaro Sano, Toshihiko Yanase, Takeru Ohta, and Masanori Koyama. 2019.

@@ -166,18 +166,32 @@ class LightGBM(BaseClassifier):
         model = cls(params=params, args=model_args)
         path = Path(path)
 
+        # Try both compressed and uncompressed checkpoints
+        if path.suffix == ".gz":
+            alternative_path = path.with_suffix("")
+        else:
+            alternative_path = Path(str(path) + ".gz")
+
+        if not path.is_file():
+            if alternative_path.is_file():
+                path = alternative_path
+            else:
+                raise FileNotFoundError(
+                    f"Neither checkpoint exists:\n"
+                    f"  {path}\n"
+                    f"  {alternative_path}"
+                )
+
         if path.suffix == ".gz":
             with tempfile.TemporaryDirectory() as tmpdir:
                 raw_path = Path(tmpdir) / "model.txt"
 
-                # Restore the original model bytes
                 with gzip.open(path, "rb") as src:
                     with raw_path.open("wb") as dst:
                         shutil.copyfileobj(src, dst)
 
                 model.model = lgb.Booster(model_file=str(raw_path))
         else:
-            # Backward compatibility with existing checkpoints
             model.model = lgb.Booster(model_file=str(path))
 
         model.is_trained = True
