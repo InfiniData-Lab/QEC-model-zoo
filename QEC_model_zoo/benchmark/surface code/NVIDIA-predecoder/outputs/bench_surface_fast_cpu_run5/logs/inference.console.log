@@ -1,0 +1,110 @@
+==============================================================================
+Custom inference / LER runner
+==============================================================================
+Repo:             QEC_model_zoo/benchmark/utils/predecoder
+Conda env:        Ising-decoding
+Custom config:    QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/configs/config_surface_inference_fast.yaml
+Experiment name:  bench_surface_fast_cpu_run5
+Distance:         9
+N rounds:         9
+Test samples:     4096
+Test batch size:  512
+Use checkpoint:   1
+Console log:      QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/outputs/bench_surface_fast_cpu_run5/logs/inference.console.log
+==============================================================================
+Using already-activated conda env: Ising-decoding
+== Python ==
+~/miniconda3/envs/Ising-decoding/bin/python
+Python 3.11.15
+== Check custom hook ==
+28:        # and use cfg.custom_model_id in {90,91,92,93} to select custom models.
+29:        custom_model_id = getattr(cfg, 'custom_model_id', None)
+30:        if custom_model_id is not None and is_custom_model_id(custom_model_id):
+31:            return build_custom_model(cfg)
+85:def is_custom_model_id(model_id):
+89:def build_custom_model(cfg):
+90:    model_id = int(getattr(cfg, "custom_model_id", cfg.model_id))
+== Runtime env overrides ==
+PREDECODER_DISTANCE=9
+PREDECODER_N_ROUNDS=9
+PREDECODER_TEST_DISTANCE=9
+PREDECODER_TEST_N_ROUNDS=9
+PREDECODER_TEST_SAMPLES=4096
+PREDECODER_TEST_BATCH_SIZE=512
+PREDECODER_USE_CHECKPOINT=1
+PREDECODER_TORCH_COMPILE=false
+== Temporarily replacing conf/config_public.yaml ==
+== Effective custom config ==
+12:model_id: 1
+13:distance: 9
+14:n_rounds: 9
+16:validation_ler: false
+18:workflow:
+19:  task: inference
+== Start custom inference / LER ==
+Loading model for task: inference
+Loading model from SafeTensors: QEC_model_zoo/model/predecoders/Ising-Decoder-SurfaceCode-1-Fast/ising_decoder_surface_code_1_fast_r9_v1.0.77_fp16.safetensors
+  model_id: 1 (from SafeTensors metadata)
+  receptive_field: 9
+  dtype: fp16
+  parameters: 912,772
+[Inference] Starting Stim evaluation (may take a bit). Shots per basis: 4,096 (sharded across 1 GPU(s)); latency timing subset: 2,000 single-shot decodes.
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=off(env) | channels_last_3d=on | prefetcher=off(cpu) | timing=off
+[DEM Timing] build=0.01s decode=0.06s (basis=X, batches=2)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=off(env) | channels_last_3d=on | prefetcher=off(cpu) | timing=off
+[DEM Timing] build=0.01s decode=0.04s (basis=Z, batches=2)
+
+[Inference] d=9, n_rounds=9, noise_model=25p
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0020, Z:0.0020], meas=[X:0.0020, Z:0.0020], idle_cnot=[X:0.0010, Y:0.0010, Z:0.0010], idle_spam=[X:0.0020, Y:0.0020, Z:0.0020], cnot_total=0.0030)
+                                           No pre-decoder  After pre-decoder
+  PyMatching latency - X basis (µs/round):          0.928              0.428
+  PyMatching latency - Z basis (µs/round):          1.033              0.427
+  PyMatching latency - Avg (µs/round):              0.980              0.427
+  LER - X basis:                                 0.002197           0.000732
+  LER - Z basis:                                 0.001465           0.002197
+  LER - Avg:                                     0.001831           0.001465
+  PyMatching speedup (Avg X/Z):                     2.293x
+== Done ==
+Output: QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/outputs/bench_surface_fast_cpu_run5
+Console log: QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/outputs/bench_surface_fast_cpu_run5/logs/inference.console.log
+== Important inference lines ==
+Custom inference / LER runner
+Repo:             QEC_model_zoo/benchmark/utils/predecoder
+Custom config:    QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/configs/config_surface_inference_fast.yaml
+Use checkpoint:   1
+Console log:      QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/outputs/bench_surface_fast_cpu_run5/logs/inference.console.log
+28:        # and use cfg.custom_model_id in {90,91,92,93} to select custom models.
+29:        custom_model_id = getattr(cfg, 'custom_model_id', None)
+30:        if custom_model_id is not None and is_custom_model_id(custom_model_id):
+31:            return build_custom_model(cfg)
+85:def is_custom_model_id(model_id):
+89:def build_custom_model(cfg):
+90:    model_id = int(getattr(cfg, "custom_model_id", cfg.model_id))
+PREDECODER_DISTANCE=9
+PREDECODER_N_ROUNDS=9
+PREDECODER_TEST_DISTANCE=9
+PREDECODER_TEST_N_ROUNDS=9
+PREDECODER_TEST_SAMPLES=4096
+PREDECODER_TEST_BATCH_SIZE=512
+PREDECODER_USE_CHECKPOINT=1
+PREDECODER_TORCH_COMPILE=false
+12:model_id: 1
+16:validation_ler: false
+== Start custom inference / LER ==
+Loading model for task: inference
+Loading model from SafeTensors: QEC_model_zoo/model/predecoders/Ising-Decoder-SurfaceCode-1-Fast/ising_decoder_surface_code_1_fast_r9_v1.0.77_fp16.safetensors
+  model_id: 1 (from SafeTensors metadata)
+[Inference] Starting Stim evaluation (may take a bit). Shots per basis: 4,096 (sharded across 1 GPU(s)); latency timing subset: 2,000 single-shot decodes.
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=off(env) | channels_last_3d=on | prefetcher=off(cpu) | timing=off
+[DEM Timing] build=0.01s decode=0.06s (basis=X, batches=2)
+[LER Config] ONNX_WORKFLOW=torch-only | torch.compile=off(env) | channels_last_3d=on | prefetcher=off(cpu) | timing=off
+[DEM Timing] build=0.01s decode=0.04s (basis=Z, batches=2)
+[Inference] d=9, n_rounds=9, noise_model=25p
+[Inference] Using explicit noise_model (25p): NoiseModel(prep=[X:0.0020, Z:0.0020], meas=[X:0.0020, Z:0.0020], idle_cnot=[X:0.0010, Y:0.0010, Z:0.0010], idle_spam=[X:0.0020, Y:0.0020, Z:0.0020], cnot_total=0.0030)
+                                           No pre-decoder  After pre-decoder
+  LER - X basis:                                 0.002197           0.000732
+  LER - Z basis:                                 0.001465           0.002197
+  LER - Avg:                                     0.001831           0.001465
+Output: QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/outputs/bench_surface_fast_cpu_run5
+Console log: QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/outputs/bench_surface_fast_cpu_run5/logs/inference.console.log
+Restored original conf/config_public.yaml

@@ -110,6 +110,6 @@ cd "QEC_model_zoo/benchmark/BB code/NTU-Neural-BP"
 BLOCK_SIZE=72 P=0.005 bash train_neural_bp.sh
 ```
 
-- The Transformer scripts use `NPROC_PER_NODE` GPUs (default 8). `train_neural_bp.sh` counts GPUs from `CUDA_VISIBLE_DEVICES` or `nvidia-smi`.
+<!-- - The Transformer scripts use `NPROC_PER_NODE` GPUs (default 8). `train_neural_bp.sh` counts GPUs from `CUDA_VISIBLE_DEVICES` or `nvidia-smi`.
 - Checkpoints and logs are written under `experiments/` in each folder.
-- If `SOURCE_CKPT` is not set, `transfer_transformer_bb144.sh` uses the latest `bb72_transformer_best.pt` under `experiments/`.
+- If `SOURCE_CKPT` is not set, `transfer_transformer_bb144.sh` uses the latest `bb72_transformer_best.pt` under `experiments/`. -->

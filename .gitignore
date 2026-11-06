@@ -213,6 +213,22 @@ datasets/*
 !datasets/croissant/
 !datasets/croissant/**
 
+# Exclude predecoder result log
+!QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/outputs/bench_surface_fast_cpu_run1/logs/inference.console.log
+!QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/outputs/bench_surface_fast_cpu_run2/logs/inference.console.log
+!QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/outputs/bench_surface_fast_cpu_run3/logs/inference.console.log
+!QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/outputs/bench_surface_fast_cpu_run4/logs/inference.console.log
+!QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/outputs/bench_surface_fast_cpu_run5/logs/inference.console.log
+!QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/outputs/bench_surface_fast_cpu_run6/logs/inference.console.log
+
+!QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run1/logs/inference.console.log
+!QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run2/logs/inference.console.log
+!QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run3/logs/inference.console.log
+!QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run4/logs/inference.console.log
+!QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run5/logs/inference.console.log
+!QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run6/logs/inference.console.log
+
+
 # Downloaded predecoder model weights / checkpoints (e.g. gated HF models under their
 # own license, such as OpenMDW-1.1). Never commit the downloaded artifacts.
 QEC_model_zoo/model/predecoders/*/

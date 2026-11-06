@@ -1,0 +1,216 @@
+==============================================================================
+Custom inference / LER runner
+==============================================================================
+Repo:             QEC_model_zoo/benchmark/utils/predecoder
+Conda env:        Ising-decoding
+Custom config:    QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/configs/config_color_inference_modelB.yaml
+Experiment name:  bench_color_modelB_cpu_d5_run2
+Distance:         5
+N rounds:         5
+Test samples:     4096
+Test batch size:  400
+Use checkpoint:   1
+Console log:      QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run2/logs/inference.console.log
+==============================================================================
+Using already-activated conda env: Ising-decoding
+== Python ==
+~/miniconda3/envs/Ising-decoding/bin/python
+Python 3.11.15
+== Check custom hook ==
+28:        # and use cfg.custom_model_id in {90,91,92,93} to select custom models.
+29:        custom_model_id = getattr(cfg, 'custom_model_id', None)
+30:        if custom_model_id is not None and is_custom_model_id(custom_model_id):
+31:            return build_custom_model(cfg)
+85:def is_custom_model_id(model_id):
+89:def build_custom_model(cfg):
+90:    model_id = int(getattr(cfg, "custom_model_id", cfg.model_id))
+== Runtime env overrides ==
+PREDECODER_DISTANCE=5
+PREDECODER_N_ROUNDS=5
+PREDECODER_TEST_DISTANCE=5
+PREDECODER_TEST_N_ROUNDS=5
+PREDECODER_TEST_SAMPLES=4096
+PREDECODER_TEST_BATCH_SIZE=400
+PREDECODER_USE_CHECKPOINT=1
+PREDECODER_TORCH_COMPILE=false
+== Effective custom config ==
+9:# size, distance, rounds, p_error, basis) are supplied at runtime via PREDECODER_TEST_*
+16:model_id: B          # cascade model; weights loaded from PREDECODER_SAFETENSORS_CHECKPOINT
+18:distance: 13
+19:n_rounds: 13
+21:custom_in_channels: 4   # Model B stem expects 4 input channels
+22:custom_out_channels: 4
+24:validation_ler: false
+26:workflow:
+27:  task: inference
+== Start custom inference / LER ==
+[CustomModels] Runtime overrides applied
+[CustomModels] custom_model_id = None
+[CustomModels] model_id = B code = color
+[CustomModels] train.epochs = 100
+[CustomModels] train.num_samples = 67108864
+[CustomModels] train.accumulate_steps = 1
+[CustomModels] batch_schedule.initial = 16
+[CustomModels] batch_schedule.final = 16
+[CustomModels] val.num_samples = 1024
+[CustomModels] optimizer.lr = 1e-05
+[CustomModels] test.distance = 5
+[CustomModels] test.n_rounds = 5
+[CustomModels] test.num_samples = 4096
+[CustomModels] test.dataloader.batch_size = 400
+[CustomModels] test.use_model_checkpoint = 1
+[CustomModels] validation_ler = False
+[CustomModels] torch_compile = False
+Loading model for task: inference
+Loading model from SafeTensors: QEC_model_zoo/model/predecoders/Ising-Decoder-ColorCode-1-Fast/ising_decoder_color_code_1_fast_r13_v1.0.400_fp16.safetensors
+  model_id: B (from SafeTensors metadata)
+  receptive_field: 13
+  dtype: fp16
+  parameters: 2,936,580
+[Color Code LER] Basis: Z, p_error: 0.003
+[Color Code LER] noise_model_family: legacy, noise_instruction_semantics: current, test.noise_model: train, gidney_style_noise: False
+[Color Code LER] Using physical-frame observable (data-only parity)
+[Color Code LER] delta_s2 conversion: disabled (default)
+
+[Chromobius Timing] Decoder Input Info:
+  Detector array shape: (400, 90) (batch_size, num_detectors)
+  Total samples decoded: 4096
+  Number of batches: 11
+
+[Chromobius Timing] Detector Density:
+  Baseline (no pre-decoder): 0.086878 (8.6878% non-zero)
+  After pre-decoder:         0.015924 (1.5924% non-zero)
+  Density reduction:         81.67%
+
+[Chromobius Timing] Decode Time (ONLY decoder.predict_obs_flips_from_dets_bit_packed, excludes GPU->CPU transfer and bit-packing):
+  n_rounds per sample: 5
+  Total rounds decoded: 20,480
+  Floor (zero density):      0.009 us/round (fixed overhead)
+  Baseline (no pre-decoder): 40.87 ms total, 1.996 us/round
+  After pre-decoder:         11.97 ms total, 0.585 us/round
+
+[Chromobius Timing] Breakdown (time above floor = density-dependent decoder work):
+  Baseline above floor:      1.987 us/round
+  Pre-decoder above floor:   0.576 us/round
+  Density-dependent speedup: 3.45x
+
+  Total speedup:             3.4134x (70.70% faster)
+
+[Chromobius Timing] Inclusive Pipeline Timing:
+  Note: attribution diagnostic only; diagnostics mode serializes baseline decode and synchronizes timed GPU stages.
+  Note: DataLoader timing includes the observed next(loader_iter) cost, including first-batch worker/prefetch warmup.
+  Input preprocess:          39.267 us/round (DataLoader=39.263, to_device=0.004)
+  Model forward:             12078.043 us/round
+  Output postprocess:        0.832 us/round (sample=0.157, syndrome=0.401, residual=0.211, pack=0.063)
+  Baseline inclusive:        2.073 us/round (pack=0.077 + decode)
+  Pre-decoder inclusive:     12079.460 us/round (model + postprocess + decode)
+
+[Chromobius Timing] Per-Batch Variability (us/round):
+  Baseline:     min=1.759, max=2.260, std=0.138, range=0.501
+  Pre-decoder:  min=0.441, max=0.744, std=0.079, range=0.303
+
+[Chromobius Timing] Single-Shot Latency (batch_size=1):
+  Samples timed: 4096 (after 50 warm-up iterations)
+  Baseline:     2.005 ± 1.456 us/round (min=0.158, max=11.792)
+  Pre-decoder:  0.629 ± 0.829 us/round (min=0.150, max=8.117)
+  Speedup:      3.19x
+[Color Code LER] Time taken: 248.700s  |  PD+Chromobius=6.8359e-03 ± 5.7e-04 (140/4096)  |  Chromobius=9.6680e-03 ± 6.7e-04 (198/4096)
+
+============================================================
+Color Code Inference Results (faithful detector_input + Chromobius)
+============================================================
+
+Z-basis:
+  num_shots: 4096
+  n_rounds: 5
+  logical_errors: 140
+  chromobius_errors: 198
+  logical_error_rate (mean): 0.0068359375
+  logical_error_rate (stderr): 0.0005677828010807899
+  chromobius_error_rate (mean): 0.00966796875
+  chromobius_error_rate (stderr): 0.0006702604383645047
+== Done ==
+Output: QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run2
+Console log: QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run2/logs/inference.console.log
+== Important inference lines ==
+Custom inference / LER runner
+Repo:             QEC_model_zoo/benchmark/utils/predecoder
+Custom config:    QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/configs/config_color_inference_modelB.yaml
+Experiment name:  bench_color_modelB_cpu_d5_run2
+Use checkpoint:   1
+Console log:      QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run2/logs/inference.console.log
+28:        # and use cfg.custom_model_id in {90,91,92,93} to select custom models.
+29:        custom_model_id = getattr(cfg, 'custom_model_id', None)
+30:        if custom_model_id is not None and is_custom_model_id(custom_model_id):
+31:            return build_custom_model(cfg)
+85:def is_custom_model_id(model_id):
+89:def build_custom_model(cfg):
+90:    model_id = int(getattr(cfg, "custom_model_id", cfg.model_id))
+PREDECODER_DISTANCE=5
+PREDECODER_N_ROUNDS=5
+PREDECODER_TEST_DISTANCE=5
+PREDECODER_TEST_N_ROUNDS=5
+PREDECODER_TEST_SAMPLES=4096
+PREDECODER_TEST_BATCH_SIZE=400
+PREDECODER_USE_CHECKPOINT=1
+PREDECODER_TORCH_COMPILE=false
+9:# size, distance, rounds, p_error, basis) are supplied at runtime via PREDECODER_TEST_*
+16:model_id: B          # cascade model; weights loaded from PREDECODER_SAFETENSORS_CHECKPOINT
+21:custom_in_channels: 4   # Model B stem expects 4 input channels
+24:validation_ler: false
+== Start custom inference / LER ==
+[CustomModels] Runtime overrides applied
+[CustomModels] custom_model_id = None
+[CustomModels] model_id = B code = color
+[CustomModels] train.epochs = 100
+[CustomModels] train.num_samples = 67108864
+[CustomModels] train.accumulate_steps = 1
+[CustomModels] batch_schedule.initial = 16
+[CustomModels] batch_schedule.final = 16
+[CustomModels] val.num_samples = 1024
+[CustomModels] optimizer.lr = 1e-05
+[CustomModels] test.distance = 5
+[CustomModels] test.n_rounds = 5
+[CustomModels] test.num_samples = 4096
+[CustomModels] test.dataloader.batch_size = 400
+[CustomModels] test.use_model_checkpoint = 1
+[CustomModels] validation_ler = False
+[CustomModels] torch_compile = False
+Loading model for task: inference
+Loading model from SafeTensors: QEC_model_zoo/model/predecoders/Ising-Decoder-ColorCode-1-Fast/ising_decoder_color_code_1_fast_r13_v1.0.400_fp16.safetensors
+  model_id: B (from SafeTensors metadata)
+[Color Code LER] Basis: Z, p_error: 0.003
+[Color Code LER] noise_model_family: legacy, noise_instruction_semantics: current, test.noise_model: train, gidney_style_noise: False
+[Color Code LER] Using physical-frame observable (data-only parity)
+[Color Code LER] delta_s2 conversion: disabled (default)
+[Chromobius Timing] Decoder Input Info:
+  Detector array shape: (400, 90) (batch_size, num_detectors)
+  Total samples decoded: 4096
+[Chromobius Timing] Detector Density:
+  Baseline (no pre-decoder): 0.086878 (8.6878% non-zero)
+  After pre-decoder:         0.015924 (1.5924% non-zero)
+  Density reduction:         81.67%
+[Chromobius Timing] Decode Time (ONLY decoder.predict_obs_flips_from_dets_bit_packed, excludes GPU->CPU transfer and bit-packing):
+  Total rounds decoded: 20,480
+  Floor (zero density):      0.009 us/round (fixed overhead)
+  Baseline (no pre-decoder): 40.87 ms total, 1.996 us/round
+  After pre-decoder:         11.97 ms total, 0.585 us/round
+[Chromobius Timing] Breakdown (time above floor = density-dependent decoder work):
+  Pre-decoder above floor:   0.576 us/round
+  Density-dependent speedup: 3.45x
+  Note: attribution diagnostic only; diagnostics mode serializes baseline decode and synchronizes timed GPU stages.
+  Model forward:             12078.043 us/round
+  Output postprocess:        0.832 us/round (sample=0.157, syndrome=0.401, residual=0.211, pack=0.063)
+  Baseline inclusive:        2.073 us/round (pack=0.077 + decode)
+  Pre-decoder inclusive:     12079.460 us/round (model + postprocess + decode)
+  Pre-decoder:  min=0.441, max=0.744, std=0.079, range=0.303
+  Pre-decoder:  0.629 ± 0.829 us/round (min=0.150, max=8.117)
+[Color Code LER] Time taken: 248.700s  |  PD+Chromobius=6.8359e-03 ± 5.7e-04 (140/4096)  |  Chromobius=9.6680e-03 ± 6.7e-04 (198/4096)
+  logical_errors: 140
+  chromobius_errors: 198
+  logical_error_rate (mean): 0.0068359375
+  logical_error_rate (stderr): 0.0005677828010807899
+  chromobius_error_rate (mean): 0.00966796875
+  chromobius_error_rate (stderr): 0.0006702604383645047
+Output: QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run2
+Console log: QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/outputs/bench_color_modelB_cpu_d5_run2/logs/inference.console.log
