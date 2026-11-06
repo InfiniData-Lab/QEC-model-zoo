@@ -8,6 +8,7 @@ from torch import Tensor
 from torch.utils.data import DataLoader, TensorDataset
 
 from model.full_decoder.base_classifier import BaseClassifier
+from model.full_decoder.checkpoint_utils import load_torch_checkpoint
 
 
 class _Backbone(nn.Module):
@@ -335,12 +336,24 @@ class TabRClassifier(BaseClassifier, nn.Module):
         return path
 
     @classmethod
-    def load_model(cls, path: Path, params: Dict[str, Any], model_args: Any) -> "TabRClassifier":
-        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    def load_model(
+            cls,
+            path: Path,
+            params: Dict[str, Any],
+            model_args: Any
+    ) -> "TabRClassifier":
+
+        device = torch.device(
+            "cuda" if torch.cuda.is_available() else "cpu"
+        )
 
         model = cls(params=params, args=model_args)
 
-        checkpoint = torch.load(path, map_location=device)
+        # Supports .pt, .pt.gz, .pt.xz and multipart .pt.xz
+        checkpoint = load_torch_checkpoint(
+            path,
+            map_location=device
+        )
 
         model.load_state_dict(checkpoint["state_dict"], strict=True)
 
