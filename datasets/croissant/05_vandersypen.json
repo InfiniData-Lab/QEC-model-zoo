@@ -1,0 +1,1155 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "dct": "http://purl.org/dc/terms/",
+    "annotation": "cr:annotation",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "containedIn": "cr:containedIn",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "excludes": "cr:excludes",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isArray": "cr:isArray",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "readLines": "cr:readLines",
+    "sdVersion": "cr:sdVersion",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "unArchive": "cr:unArchive",
+    "value": "cr:value"
+  },
+  "@type": "sc:Dataset",
+  "name": "Vandersypen",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "url": "https://www.kaggle.com/datasets/infinidata/qec-model-zoo-data",
+  "rai:dataLimitations": "The QEC model zoo dataset is intended solely for offline evaluation and is not designed for deployment in a real-time decoding environment. The fidelity per processed dataset is inherently restricted to the adopted shot-level feature construction scheme, which may omit or simplify information relevant to the full structure of the observed syndromes and underlying error patterns of the raw datasets. Although the Temporal and Spatial feature groups capture several features at each dimension across different datasets, the dataset is limited in capturing dynamic temporal-spatial information in a real-time, continuous decoding scenario. Consequently, the evaluation results on datasets should be interpreted within the scope of these feature-construction assumptions and should not be taken as a direct indication of real-time decoding performance.",
+  "rai:dataBiases": "The real datasets are entirely sourced from specific quantum computing platforms or quantum processing units, mainly introducing platform- or hardware-specific bias, limiting the generalizability to other platforms. Additionally, moving to shot-level features adds new biases on top of the platform biases. Each shot is treated as an individual decoding sample characterized by seven carefully engineered feature groups. Choosing these seven feature groups is subjective. While this representation is suited to shot-level AI-based decoding and enables evaluation of a broader range of AI models, it may not capture the full spectrum of syndrome measurement, potentially limiting the ability of AI-based decoders. For simulated datasets, biases are mainly from Stim's simulation models, noise models, circuit choices, and quantum data generation protocols with different code families for training, testing, or inference.",
+  "rai:personalSensitiveInformation": "Although some dataset names contain personal names and organization names to facilitate differentiation between them, the datasets do not contain information related to gender, age, geographic location, language, culture, socio-economic status, health and medical data, and political or religious beliefs.",
+  "rai:dataUseCases": "The shot-level sampling datasets are used to evaluate the performance of traditional machine learning and tabular deep learning models, including MLP, TabM, TabR, XGBoost, LightGBM, CatBoost, TabICLv2, and TabPFNv2 for QEC decoding tasks. These datasets can be used to evaluate more models that can consume them. In addition, these datasets support ablation studies to investigate the impact of different feature selections on decoding performance. By splitting the datasets into sliding windows, they could be further used for continuous decoding tasks, which would be better suited to real-time experiments.",
+  "rai:dataSocialImpact": "The QEC model-zoo dataset enables rigorous empirical study of AI-based QEC decoders and supports feature-group ablation, allowing users to systematically investigate which input feature groups contribute most to the performance of different AI-based QEC decoders across target code families. For QEC researchers, it provides a practical way to organize heterogeneous benchmark experiments, compare decoders under shared protocols, and reuse model configurations across datasets and hardware settings. For AI researchers, it lowers the barrier to entry by turning quantum decoding into a set of accessible benchmark tasks with shared inputs, metrics, and baselines.",
+  "rai:hasSyntheticData": false,
+  "prov:wasDerivedFrom": [
+    {
+      "@id": "https://doi.org/10.5281/zenodo.17368102",
+      "prov:label": "Weight-four parity checks with silicon spin qubits",
+      "sc:license": "https://creativecommons.org/licenses/by/4.0/",
+      "prov:wasAttributedTo": {
+        "prov:label": "Zenodo"
+      }
+    }
+  ],
+  "prov:wasGeneratedBy": [
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q3306762"
+      },
+      "prov:label": "Dataset Digging",
+      "sc:description": "Exploratory analysis of the repeated parity-check experiment data and the accompanying analysis code.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:Agent",
+          "@id": "research_author_(human)",
+          "prov:label": "Research author (Human)",
+          "sc:description": "Explored the parity-check data and the published analysis code."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q5227332"
+      },
+      "prov:label": "Format Conversion",
+      "sc:description": "Parity-check shots extracted into a structured shot-by-round format, including prepared state, parity outcomes and final data-qubit measurements.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "qutech/vandersypen_code_pipeline",
+          "prov:label": "QuTech/Vandersypen code pipeline",
+          "sc:description": "The group's analysis code, used to extract the parity-check shots into shot-by-round format.."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q5227332"
+      },
+      "prov:label": "Table Structuring",
+      "sc:description": "One row per shot with 23 engineered features, using a syndrome convention for a single ancilla with no reset. Target: logical flip.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "feature_extraction_pipeline",
+          "prov:label": "Feature extraction pipeline",
+          "sc:description": "Builds the per-shot table with 23 features under the single-ancilla, no-reset convention."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q3306762"
+      },
+      "prov:label": "Quality Verification",
+      "sc:description": "Columns that leak the label and constant columns removed.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:Agent",
+          "@id": "human_auditor_(research_author)",
+          "prov:label": "Human Auditor (Research author)",
+          "sc:description": "Found and removed the label-leaking and constant columns. Reviewed every finding from the AI agents before any change was made."
+        },
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "automated_quality_review_agents",
+          "prov:label": "Automated Quality Review Agents",
+          "sc:description": "(Claude Code, Anthropic, running Claude Opus 4.7, later Claude Opus 4.8): AI coding agents that checked the quality of the processing (for example the rows of the output tables) and read through the processing code to check its quality. They reported their findings to the research author, who decided on every fix."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q5227332"
+      },
+      "prov:label": "Pipeline Transformation",
+      "sc:description": "QEC-Lake was not used for this dataset. A custom feature pipeline was used instead, followed by a manual train/test split and integration into the Model Zoo.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "custom_transformation_pipeline",
+          "prov:label": "Custom transformation pipeline",
+          "sc:description": "Dataset-specific pipeline used in place of the standard QEC-Lake pipeline."
+        },
+        {
+          "@type": "prov:Agent",
+          "@id": "research_author_(human)",
+          "prov:label": "Research author (Human)",
+          "sc:description": "Made the train/test split and added the dataset to the Model Zoo."
+        }
+      ]
+    }
+  ],
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "variableMeasured": [
+    "meta",
+    "rates",
+    "final",
+    "temporal",
+    "persistence",
+    "absolute"
+  ],
+  "featureGroupsMapping": {
+    "meta": [
+      "prep_D1",
+      "prep_D2",
+      "prep_parity"
+    ],
+    "rates": [
+      "avg_syn",
+      "avg_defect",
+      "saturation_defect"
+    ],
+    "final": [
+      "final_syn",
+      "final_defect"
+    ],
+    "temporal": [
+      "recency_defect",
+      "recency_defect_tau3",
+      "recency_defect_tau10",
+      "win_trend_defect",
+      "win_late_any",
+      "temporal_defect_com",
+      "run_mean_defect",
+      "run_frac_solo",
+      "run_frac_long"
+    ],
+    "persistence": [
+      "persist_defect_run_rate",
+      "persist_defect_switch_rate",
+      "corr_lag1",
+      "corr_lag2",
+      "corr_tau"
+    ],
+    "absolute": [
+      "absolute_defect_count"
+    ]
+  },
+  "citeAs": "@inproceedings{wang2026qecmodelzoo,\n  title={{QEC} Model Zoo: Democratizing {AI}-enhanced Quantum Error Correction},\n  author = {Wang, Yuandou and de Groot, Max and Patwardhan, Aadi and Geerts, Floris and Hai, Rihan},\n  booktitle={The Fortieth Annual Conference on Neural Information Processing Systems Evaluations and Datasets Track},\n  year = {2026},\n  note = {Accepted at NeurIPS 2026; to appear}\n}",
+  "shotColumn": "shot_id",
+  "nRoundsColumn": "num_rounds",
+  "targetColumn": "log_flip",
+  "codeFamily": "parity check",
+  "platform": "semiconducting",
+  "distance": 2,
+  "rawFeatures": [
+    "parity",
+    "prep_D1",
+    "prep_D2"
+  ],
+  "rawRoundColumn": "round_id",
+  "description": "Vandersypen. Source: Vandersypen Lab. Per-round granularity: False.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "vandersypen/train.parquet",
+      "contentUrl": "datasets\\processed_zz_parity_check\\ml_data\\train.parquet",
+      "encodingFormat": "application/vnd.apache.parquet",
+      "sha256": "f7fad01396ba124da632cbe098a41e7f3a9fc101c39ecf50c2b6fd3f5124ecc1"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "vandersypen/test.parquet",
+      "contentUrl": "datasets\\processed_zz_parity_check\\ml_data\\test.parquet",
+      "encodingFormat": "application/vnd.apache.parquet",
+      "sha256": "38868d40f81f71cba58c8bf3f6050553fe88aeda9978a24e3c12ebf51966a5d1"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "vandersypen/raw.parquet",
+      "contentUrl": "datasets\\processed_zz_parity_check\\ml_data\\raw.parquet",
+      "encodingFormat": "application/vnd.apache.parquet",
+      "sha256": "4249b26291072072969c2f7716260984f6e0eb83f8a07c9a43a2fa6f032df889"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "vandersypen/records_train",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "shot_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/prep_state",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "prep_state"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/prep_D1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "prep_D1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/prep_D2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "prep_D2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/prep_parity",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "prep_parity"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/meas_D1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "meas_D1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/meas_D2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "meas_D2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/log_flip",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "log_flip"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/avg_syn",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "avg_syn"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/avg_defect",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "avg_defect"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/num_rounds",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "num_rounds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/saturation_defect",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "saturation_defect"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/final_syn",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "final_syn"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/final_defect",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "final_defect"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/temporal_defect_com",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "temporal_defect_com"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/persist_defect_run_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "persist_defect_run_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/persist_defect_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "persist_defect_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/run_mean_defect",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "run_mean_defect"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/run_frac_solo",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "run_frac_solo"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/run_frac_long",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "run_frac_long"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/absolute_defect_count",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "absolute_defect_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/recency_defect",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "recency_defect"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/recency_defect_tau3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "recency_defect_tau3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/recency_defect_tau10",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "recency_defect_tau10"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/win_trend_defect",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "win_trend_defect"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/win_late_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "win_late_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/corr_lag1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "corr_lag1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/corr_lag2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "corr_lag2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_train/corr_tau",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/train.parquet"
+            },
+            "extract": {
+              "column": "corr_tau"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "vandersypen/records_test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "shot_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/prep_state",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "prep_state"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/prep_D1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "prep_D1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/prep_D2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "prep_D2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/prep_parity",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "prep_parity"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/meas_D1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "meas_D1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/meas_D2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "meas_D2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/log_flip",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "log_flip"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/avg_syn",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "avg_syn"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/avg_defect",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "avg_defect"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/num_rounds",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "num_rounds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/saturation_defect",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "saturation_defect"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/final_syn",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "final_syn"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/final_defect",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "final_defect"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/temporal_defect_com",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "temporal_defect_com"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/persist_defect_run_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "persist_defect_run_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/persist_defect_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "persist_defect_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/run_mean_defect",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "run_mean_defect"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/run_frac_solo",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "run_frac_solo"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/run_frac_long",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "run_frac_long"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/absolute_defect_count",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "absolute_defect_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/recency_defect",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "recency_defect"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/recency_defect_tau3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "recency_defect_tau3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/recency_defect_tau10",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "recency_defect_tau10"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/win_trend_defect",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "win_trend_defect"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/win_late_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "win_late_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/corr_lag1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "corr_lag1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/corr_lag2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "corr_lag2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_test/corr_tau",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/test.parquet"
+            },
+            "extract": {
+              "column": "corr_tau"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "vandersypen/records_raw",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_raw/shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/raw.parquet"
+            },
+            "extract": {
+              "column": "shot_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_raw/round_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/raw.parquet"
+            },
+            "extract": {
+              "column": "round_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_raw/prep_state",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/raw.parquet"
+            },
+            "extract": {
+              "column": "prep_state"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_raw/prep_D1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/raw.parquet"
+            },
+            "extract": {
+              "column": "prep_D1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_raw/prep_D2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/raw.parquet"
+            },
+            "extract": {
+              "column": "prep_D2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_raw/expected_parity",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/raw.parquet"
+            },
+            "extract": {
+              "column": "expected_parity"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_raw/parity",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/raw.parquet"
+            },
+            "extract": {
+              "column": "parity"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_raw/meas_D1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/raw.parquet"
+            },
+            "extract": {
+              "column": "meas_D1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_raw/meas_D2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/raw.parquet"
+            },
+            "extract": {
+              "column": "meas_D2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "vandersypen/records_raw/log_flip",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "vandersypen/raw.parquet"
+            },
+            "extract": {
+              "column": "log_flip"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

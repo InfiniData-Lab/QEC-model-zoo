@@ -1,0 +1,2879 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "dct": "http://purl.org/dc/terms/",
+    "annotation": "cr:annotation",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "containedIn": "cr:containedIn",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "excludes": "cr:excludes",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isArray": "cr:isArray",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "readLines": "cr:readLines",
+    "sdVersion": "cr:sdVersion",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "unArchive": "cr:unArchive",
+    "value": "cr:value"
+  },
+  "@type": "sc:Dataset",
+  "name": "Google Color d3",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "url": "https://www.kaggle.com/datasets/infinidata/qec-model-zoo-data",
+  "rai:dataLimitations": "The QEC model zoo dataset is intended solely for offline evaluation and is not designed for deployment in a real-time decoding environment. The fidelity per processed dataset is inherently restricted to the adopted shot-level feature construction scheme, which may omit or simplify information relevant to the full structure of the observed syndromes and underlying error patterns of the raw datasets. Although the Temporal and Spatial feature groups capture several features at each dimension across different datasets, the dataset is limited in capturing dynamic temporal-spatial information in a real-time, continuous decoding scenario. Consequently, the evaluation results on datasets should be interpreted within the scope of these feature-construction assumptions and should not be taken as a direct indication of real-time decoding performance.",
+  "rai:dataBiases": "The real datasets are entirely sourced from specific quantum computing platforms or quantum processing units, mainly introducing platform- or hardware-specific bias, limiting the generalizability to other platforms. Additionally, moving to shot-level features adds new biases on top of the platform biases. Each shot is treated as an individual decoding sample characterized by seven carefully engineered feature groups. Choosing these seven feature groups is subjective. While this representation is suited to shot-level AI-based decoding and enables evaluation of a broader range of AI models, it may not capture the full spectrum of syndrome measurement, potentially limiting the ability of AI-based decoders. For simulated datasets, biases are mainly from Stim's simulation models, noise models, circuit choices, and quantum data generation protocols with different code families for training, testing, or inference.",
+  "rai:personalSensitiveInformation": "Although some dataset names contain personal names and organization names to facilitate differentiation between them, the datasets do not contain information related to gender, age, geographic location, language, culture, socio-economic status, health and medical data, and political or religious beliefs.",
+  "rai:dataUseCases": "The shot-level sampling datasets are used to evaluate the performance of traditional machine learning and tabular deep learning models, including MLP, TabM, TabR, XGBoost, LightGBM, CatBoost, TabICLv2, and TabPFNv2 for QEC decoding tasks. These datasets can be used to evaluate more models that can consume them. In addition, these datasets support ablation studies to investigate the impact of different feature selections on decoding performance. By splitting the datasets into sliding windows, they could be further used for continuous decoding tasks, which would be better suited to real-time experiments.",
+  "rai:dataSocialImpact": "The QEC model-zoo dataset enables rigorous empirical study of AI-based QEC decoders and supports feature-group ablation, allowing users to systematically investigate which input feature groups contribute most to the performance of different AI-based QEC decoders across target code families. For QEC researchers, it provides a practical way to organize heterogeneous benchmark experiments, compare decoders under shared protocols, and reuse model configurations across datasets and hardware settings. For AI researchers, it lowers the barrier to entry by turning quantum decoding into a set of accessible benchmark tasks with shared inputs, metrics, and baselines.",
+  "rai:hasSyntheticData": false,
+  "prov:wasDerivedFrom": [
+    {
+      "@id": "https://doi.org/10.5281/zenodo.14238944",
+      "prov:label": "Data for \"Scaling and logic in the color code on a superconducting quantum processor",
+      "sc:license": "https://creativecommons.org/licenses/by/4.0/",
+      "prov:wasAttributedTo": {
+        "prov:label": "Zenodo"
+      }
+    }
+  ],
+  "prov:wasGeneratedBy": [
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q3306762"
+      },
+      "prov:label": "Dataset Digging",
+      "sc:description": "Exploratory analysis of the superdense color-code data across sub-datasets, patch orientations, X/Z bases and round counts.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:Agent",
+          "@id": "research_author_(human)",
+          "prov:label": "Research author (Human)",
+          "sc:description": "Explored the sub-datasets, orientations, bases and round counts to plan the ingestion."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q5227332"
+      },
+      "prov:label": "Format Conversion",
+      "sc:description": "Raw shots and circuits ingested and converted into a structured shot-by-round format, with the color-code layout parsed.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "color-code_processing_pipeline",
+          "prov:label": "Color-code processing pipeline",
+          "sc:description": "Code that ingests the shots and circuits, parses the color-code layout and converts the data into shot-by-round format."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q5227332"
+      },
+      "prov:label": "Table Structuring",
+      "sc:description": "One row per shot with engineered syndrome features. The Chromobius baseline decoder was mapped in. Target: logical observable flip.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "feature_extraction_pipeline",
+          "prov:label": "Feature extraction pipeline",
+          "sc:description": "Builds the per-shot table and maps in the Chromobius baseline."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q3306762"
+      },
+      "prov:label": "Quality Verification",
+      "sc:description": "Ingestion and per-round tables verified.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:Agent",
+          "@id": "human_auditor_(research_author)",
+          "prov:label": "Human Auditor (Research author)",
+          "sc:description": "Verified the ingestion and the per-round tables. Reviewed every finding from the AI agents before any change was made."
+        },
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "automated_quality_review_agents",
+          "prov:label": "Automated Quality Review Agents",
+          "sc:description": "(Claude Code, Anthropic, running Claude Opus 4.7, later Claude Opus 4.8): AI coding agents that checked the quality of the processing (for example the rows of the output tables) and read through the processing code to check its quality. They reported their findings to the research author, who decided on every fix."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q5227332"
+      },
+      "prov:label": "Pipeline Transformation",
+      "sc:description": "QEC-Lake step: round-level tables were built and processed through the QEC-Lake pipeline, then split by hand into train/test sets. Activities 1\u20134 did not use QEC-Lake.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "qec-lake_data_lake_pipeline",
+          "prov:label": "QEC-Lake data lake pipeline",
+          "sc:description": "Built the round-level tables in the QEC-Lake format."
+        },
+        {
+          "@type": "prov:Agent",
+          "@id": "research_author_(human)",
+          "prov:label": "Research author (Human)",
+          "sc:description": "Made the train/test split."
+        }
+      ]
+    }
+  ],
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "variableMeasured": [
+    "temporal",
+    "rates",
+    "final",
+    "code",
+    "spatial"
+  ],
+  "featureGroupsMapping": {
+    "temporal": [
+      "det_0_rolling_mean",
+      "det_1_rolling_mean",
+      "det_2_rolling_mean",
+      "det_3_rolling_mean",
+      "det_4_rolling_mean",
+      "det_5_rolling_mean",
+      "det_0_rolling_std",
+      "det_1_rolling_std",
+      "det_2_rolling_std",
+      "det_3_rolling_std",
+      "det_4_rolling_std",
+      "det_5_rolling_std",
+      "det_0_burst_length",
+      "det_1_burst_length",
+      "det_2_burst_length",
+      "det_3_burst_length",
+      "det_4_burst_length",
+      "det_5_burst_length",
+      "det_0_first_norm",
+      "det_1_first_norm",
+      "det_2_first_norm",
+      "det_3_first_norm",
+      "det_4_first_norm",
+      "det_5_first_norm",
+      "det_0_last_norm",
+      "det_1_last_norm",
+      "det_2_last_norm",
+      "det_3_last_norm",
+      "det_4_last_norm",
+      "det_5_last_norm",
+      "det_0_episodes",
+      "det_1_episodes",
+      "det_2_episodes",
+      "det_3_episodes",
+      "det_4_episodes",
+      "det_5_episodes",
+      "det_0_recency",
+      "det_1_recency",
+      "det_2_recency",
+      "det_3_recency",
+      "det_4_recency",
+      "det_5_recency",
+      "det_0_switch_rate",
+      "det_1_switch_rate",
+      "det_2_switch_rate",
+      "det_3_switch_rate",
+      "det_4_switch_rate",
+      "det_5_switch_rate"
+    ],
+    "rates": [
+      "total_defects",
+      "max_defects",
+      "defect_rate"
+    ],
+    "final": [
+      "det_0_last_round",
+      "det_1_last_round",
+      "det_2_last_round",
+      "det_3_last_round",
+      "det_4_last_round",
+      "det_5_last_round"
+    ],
+    "code": [
+      "code_distance",
+      "n_stabilizers",
+      "num_rounds"
+    ],
+    "spatial": [
+      "defect_centroid_row",
+      "defect_centroid_col",
+      "defect_spread_row",
+      "defect_spread_col",
+      "det_0_local_neigh_mean",
+      "det_1_local_neigh_mean",
+      "det_2_local_neigh_mean",
+      "det_3_local_neigh_mean",
+      "det_4_local_neigh_mean",
+      "det_5_local_neigh_mean",
+      "det_0_local_any",
+      "det_1_local_any",
+      "det_2_local_any",
+      "det_3_local_any",
+      "det_4_local_any",
+      "det_5_local_any",
+      "det_0_local_co",
+      "det_1_local_co",
+      "det_2_local_co",
+      "det_3_local_co",
+      "det_4_local_co",
+      "det_5_local_co"
+    ]
+  },
+  "citeAs": "@inproceedings{wang2026qecmodelzoo,\n  title={{QEC} Model Zoo: Democratizing {AI}-enhanced Quantum Error Correction},\n  author = {Wang, Yuandou and de Groot, Max and Patwardhan, Aadi and Geerts, Floris and Hai, Rihan},\n  booktitle={The Fortieth Annual Conference on Neural Information Processing Systems Evaluations and Datasets Track},\n  year = {2026},\n  note = {Accepted at NeurIPS 2026; to appear}\n}",
+  "shotColumn": "shot_id",
+  "nRoundsColumn": "num_rounds",
+  "targetColumn": "logical_error",
+  "codeFamily": "color code",
+  "platform": "superconducting",
+  "distance": 3,
+  "stimFileMappingPath": "datasets/google_color/google_superdense_color_code_d3_d5",
+  "rawFeatures": [
+    "det_0",
+    "det_1",
+    "det_2",
+    "det_3",
+    "det_4",
+    "det_5"
+  ],
+  "rawRoundColumn": "round",
+  "description": "Google Color d3. Source: Google Quantum AI. Per-round granularity: False. Ancilla qubit count: 6.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "google_color_d3/train.parquet",
+      "contentUrl": "datasets\\google_color\\d3\\train.parquet",
+      "encodingFormat": "application/vnd.apache.parquet",
+      "sha256": "6982681e5dac3945e7ea2028869ab7da2d5686aba416209f867b4d095dbeb238"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "google_color_d3/test.parquet",
+      "contentUrl": "datasets\\google_color\\d3\\test.parquet",
+      "encodingFormat": "application/vnd.apache.parquet",
+      "sha256": "5f789844e075f3877b397a9af0907e52d70204cd5c433f951ccc87b20d3d2a73"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "google_color_d3/raw.parquet",
+      "contentUrl": "datasets\\google_color\\d3\\raw.parquet",
+      "encodingFormat": "application/vnd.apache.parquet",
+      "sha256": "7ab10827d996516bdb287747cd97d193d55487c2cb1d845c97d769b8cb5e3742"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "google_color_d3/records_train",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_0_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_1_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_2_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_3_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_4_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_5_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_0_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_1_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_2_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_3_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_4_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_5_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_0_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_1_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_2_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_3_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_4_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_5_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_0_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_1_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_2_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_3_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_4_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_5_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_0_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_1_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_2_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_3_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_4_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_5_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_0_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_1_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_2_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_3_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_4_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_5_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_0_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_1_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_2_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_3_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_4_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_5_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_0_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_1_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_2_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_3_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_4_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_5_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/total_defects",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "total_defects"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/max_defects",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "max_defects"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/defect_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defect_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_0_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_1_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_2_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_3_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_4_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_5_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/code_distance",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "code_distance"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/n_stabilizers",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "n_stabilizers"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/num_rounds",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "num_rounds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/defect_centroid_row",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defect_centroid_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/defect_centroid_col",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defect_centroid_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/defect_spread_row",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defect_spread_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/defect_spread_col",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defect_spread_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_0_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_1_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_2_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_3_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_4_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_5_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_0_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_1_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_2_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_3_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_4_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_5_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_0_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_1_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_2_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_3_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_4_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/det_5_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/logical_error",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "logical_error"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "shot_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/stim_file_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "stim_file_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/source_shot_index",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "source_shot_index"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/path",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "path"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/distance",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "distance"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/basis",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "basis"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/rounds",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "rounds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_train/stim_file",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/train.parquet"
+            },
+            "extract": {
+              "column": "stim_file"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "google_color_d3/records_test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_0_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_1_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_2_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_3_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_4_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_5_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_0_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_1_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_2_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_3_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_4_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_5_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_0_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_1_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_2_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_3_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_4_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_5_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_0_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_1_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_2_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_3_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_4_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_5_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_0_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_1_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_2_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_3_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_4_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_5_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_0_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_1_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_2_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_3_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_4_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_5_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_0_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_1_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_2_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_3_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_4_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_5_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_0_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_1_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_2_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_3_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_4_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_5_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/total_defects",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "total_defects"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/max_defects",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "max_defects"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/defect_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defect_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_0_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_1_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_2_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_3_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_4_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_5_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/code_distance",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "code_distance"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/n_stabilizers",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "n_stabilizers"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/num_rounds",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "num_rounds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/defect_centroid_row",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defect_centroid_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/defect_centroid_col",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defect_centroid_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/defect_spread_row",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defect_spread_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/defect_spread_col",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defect_spread_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_0_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_1_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_2_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_3_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_4_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_5_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_0_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_1_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_2_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_3_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_4_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_5_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_0_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_1_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_2_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_3_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_4_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/det_5_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/logical_error",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "logical_error"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "shot_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/stim_file_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "stim_file_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/source_shot_index",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "source_shot_index"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/path",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "path"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/distance",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "distance"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/basis",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "basis"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/rounds",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "rounds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_test/stim_file",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/test.parquet"
+            },
+            "extract": {
+              "column": "stim_file"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "google_color_d3/records_raw",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "shot_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/file_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "file_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/round",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/det_0",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/det_1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/det_2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/det_3",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/det_4",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/det_5",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_5"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/logical_error",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "logical_error"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/code",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "code"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/distance",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "distance"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/basis",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "basis"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "google_color_d3/records_raw/stim_file_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "google_color_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "stim_file_id"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

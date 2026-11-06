@@ -1,0 +1,6730 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "dct": "http://purl.org/dc/terms/",
+    "annotation": "cr:annotation",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "containedIn": "cr:containedIn",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "excludes": "cr:excludes",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isArray": "cr:isArray",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "readLines": "cr:readLines",
+    "sdVersion": "cr:sdVersion",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "unArchive": "cr:unArchive",
+    "value": "cr:value"
+  },
+  "@type": "sc:Dataset",
+  "name": "Lukin d3",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "url": "https://www.kaggle.com/datasets/infinidata/qec-model-zoo-data",
+  "rai:dataLimitations": "The QEC model zoo dataset is intended solely for offline evaluation and is not designed for deployment in a real-time decoding environment. The fidelity per processed dataset is inherently restricted to the adopted shot-level feature construction scheme, which may omit or simplify information relevant to the full structure of the observed syndromes and underlying error patterns of the raw datasets. Although the Temporal and Spatial feature groups capture several features at each dimension across different datasets, the dataset is limited in capturing dynamic temporal-spatial information in a real-time, continuous decoding scenario. Consequently, the evaluation results on datasets should be interpreted within the scope of these feature-construction assumptions and should not be taken as a direct indication of real-time decoding performance.",
+  "rai:dataBiases": "The real datasets are entirely sourced from specific quantum computing platforms or quantum processing units, mainly introducing platform- or hardware-specific bias, limiting the generalizability to other platforms. Additionally, moving to shot-level features adds new biases on top of the platform biases. Each shot is treated as an individual decoding sample characterized by seven carefully engineered feature groups. Choosing these seven feature groups is subjective. While this representation is suited to shot-level AI-based decoding and enables evaluation of a broader range of AI models, it may not capture the full spectrum of syndrome measurement, potentially limiting the ability of AI-based decoders. For simulated datasets, biases are mainly from Stim's simulation models, noise models, circuit choices, and quantum data generation protocols with different code families for training, testing, or inference.",
+  "rai:personalSensitiveInformation": "Although some dataset names contain personal names and organization names to facilitate differentiation between them, the datasets do not contain information related to gender, age, geographic location, language, culture, socio-economic status, health and medical data, and political or religious beliefs.",
+  "rai:dataUseCases": "The shot-level sampling datasets are used to evaluate the performance of traditional machine learning and tabular deep learning models, including MLP, TabM, TabR, XGBoost, LightGBM, CatBoost, TabICLv2, and TabPFNv2 for QEC decoding tasks. These datasets can be used to evaluate more models that can consume them. In addition, these datasets support ablation studies to investigate the impact of different feature selections on decoding performance. By splitting the datasets into sliding windows, they could be further used for continuous decoding tasks, which would be better suited to real-time experiments.",
+  "rai:dataSocialImpact": "The QEC model-zoo dataset enables rigorous empirical study of AI-based QEC decoders and supports feature-group ablation, allowing users to systematically investigate which input feature groups contribute most to the performance of different AI-based QEC decoders across target code families. For QEC researchers, it provides a practical way to organize heterogeneous benchmark experiments, compare decoders under shared protocols, and reuse model configurations across datasets and hardware settings. For AI researchers, it lowers the barrier to entry by turning quantum decoding into a set of accessible benchmark tasks with shared inputs, metrics, and baselines.",
+  "rai:hasSyntheticData": false,
+  "prov:wasDerivedFrom": [
+    {
+      "@id": "https://doi.org/10.5281/zenodo.15685795",
+      "prov:label": "Surface code data and analysis for \"Architectural mechanisms of a universal fault-tolerant quantum computer\"",
+      "sc:license": "https://creativecommons.org/licenses/by/4.0/",
+      "prov:wasAttributedTo": {
+        "prov:label": "Zenodo"
+      }
+    }
+  ],
+  "prov:wasGeneratedBy": [
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q3306762"
+      },
+      "prov:label": "Dataset Digging",
+      "sc:description": "Exploratory analysis of the raw neutral-atom surface-code memory data. Atom-loss (erasure) events and the reconstruction of the final readout round were identified.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:Agent",
+          "@id": "research_author_(human)",
+          "prov:label": "Research author (Human)",
+          "sc:description": "Explored the data and identified the atom-loss events and the final-round reconstruction."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q5227332"
+      },
+      "prov:label": "Format Conversion",
+      "sc:description": "First QEC-Lake step: the raw data was converted directly into the QEC-Lake standard schema, with code layout and stabilizers derived and detectors computed.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "harvard_neutral-atom_ingestion_pipeline",
+          "prov:label": "Harvard neutral-atom ingestion pipeline",
+          "sc:description": "Code that converts the data to the QEC-Lake schema, derives layout and stabilizers, and computes detectors."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q5227332"
+      },
+      "prov:label": "Table Structuring",
+      "sc:description": "Tables split by distance and basis, with the Z basis used for modelling. One row per shot with engineered features, including erasure (soft) information. Target: logical error.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "feature_extraction_pipeline",
+          "prov:label": "Feature extraction pipeline",
+          "sc:description": "Splits the tables by distance and basis and builds the per-shot features, including erasure information."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q3306762"
+      },
+      "prov:label": "Quality Verification",
+      "sc:description": "Dataset documentation and metadata generated and checked.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:Agent",
+          "@id": "human_auditor_(research_author)",
+          "prov:label": "Human Auditor (Research author)",
+          "sc:description": "Reviewed the generated documentation and metadata. Reviewed every finding from the AI agents before any change was made."
+        },
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "automated_quality_review_agents",
+          "prov:label": "Automated Quality Review Agents",
+          "sc:description": "(Claude Code, Anthropic, running Claude Opus 4.7, later Claude Opus 4.8): AI coding agents that checked the quality of the processing (for example the rows of the output tables) and read through the processing code to check its quality. They reported their findings to the research author, who decided on every fix."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q5227332"
+      },
+      "prov:label": "Pipeline Transformation",
+      "sc:description": "Second QEC-Lake step: the tables were processed through the QEC-Lake pipeline, then split by hand into train/test sets for the Model Zoo. QEC-Lake was used in Activities 2 and 5 only.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "qec-lake_data_lake_pipeline",
+          "prov:label": "QEC-Lake data lake pipeline",
+          "sc:description": "Built the round-level tables in the QEC-Lake format."
+        },
+        {
+          "@type": "prov:Agent",
+          "@id": "research_author_(human)",
+          "prov:label": "Research author (Human)",
+          "sc:description": "Made the train/test split for the Model Zoo."
+        }
+      ]
+    }
+  ],
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "variableMeasured": [
+    "temporal",
+    "rates",
+    "final",
+    "code",
+    "spatial",
+    "soft",
+    "lstm"
+  ],
+  "featureGroupsMapping": {
+    "temporal": [
+      "det_0_r0",
+      "det_1_r0",
+      "det_2_r0",
+      "det_3_r0",
+      "det_4_r0",
+      "det_5_r0",
+      "det_6_r0",
+      "det_7_r0",
+      "det_0_r1",
+      "det_1_r1",
+      "det_2_r1",
+      "det_3_r1",
+      "det_4_r1",
+      "det_5_r1",
+      "det_6_r1",
+      "det_7_r1",
+      "det_0_r2",
+      "det_1_r2",
+      "det_2_r2",
+      "det_3_r2",
+      "det_4_r2",
+      "det_5_r2",
+      "det_6_r2",
+      "det_7_r2",
+      "det_0_r3",
+      "det_1_r3",
+      "det_2_r3",
+      "det_3_r3",
+      "det_4_r3",
+      "det_5_r3",
+      "det_6_r3",
+      "det_7_r3",
+      "det_0_r4",
+      "det_1_r4",
+      "det_2_r4",
+      "det_3_r4",
+      "det_4_r4",
+      "det_5_r4",
+      "det_6_r4",
+      "det_7_r4",
+      "det_0_rolling_mean",
+      "det_1_rolling_mean",
+      "det_2_rolling_mean",
+      "det_3_rolling_mean",
+      "det_4_rolling_mean",
+      "det_5_rolling_mean",
+      "det_6_rolling_mean",
+      "det_7_rolling_mean",
+      "det_0_rolling_std",
+      "det_1_rolling_std",
+      "det_2_rolling_std",
+      "det_3_rolling_std",
+      "det_4_rolling_std",
+      "det_5_rolling_std",
+      "det_6_rolling_std",
+      "det_7_rolling_std",
+      "det_0_burst_length",
+      "det_1_burst_length",
+      "det_2_burst_length",
+      "det_3_burst_length",
+      "det_4_burst_length",
+      "det_5_burst_length",
+      "det_6_burst_length",
+      "det_7_burst_length",
+      "det_0_first_norm",
+      "det_1_first_norm",
+      "det_2_first_norm",
+      "det_3_first_norm",
+      "det_4_first_norm",
+      "det_5_first_norm",
+      "det_6_first_norm",
+      "det_7_first_norm",
+      "det_0_last_norm",
+      "det_1_last_norm",
+      "det_2_last_norm",
+      "det_3_last_norm",
+      "det_4_last_norm",
+      "det_5_last_norm",
+      "det_6_last_norm",
+      "det_7_last_norm",
+      "det_0_episodes",
+      "det_1_episodes",
+      "det_2_episodes",
+      "det_3_episodes",
+      "det_4_episodes",
+      "det_5_episodes",
+      "det_6_episodes",
+      "det_7_episodes",
+      "det_0_recency",
+      "det_1_recency",
+      "det_2_recency",
+      "det_3_recency",
+      "det_4_recency",
+      "det_5_recency",
+      "det_6_recency",
+      "det_7_recency",
+      "det_0_switch_rate",
+      "det_1_switch_rate",
+      "det_2_switch_rate",
+      "det_3_switch_rate",
+      "det_4_switch_rate",
+      "det_5_switch_rate",
+      "det_6_switch_rate",
+      "det_7_switch_rate"
+    ],
+    "rates": [
+      "total_defects",
+      "max_defects",
+      "defect_rate",
+      "defects_r0",
+      "defects_r1",
+      "defects_r2",
+      "defects_r3",
+      "defects_r4"
+    ],
+    "final": [
+      "det_0_final",
+      "det_1_final",
+      "det_2_final",
+      "det_3_final",
+      "det_4_final",
+      "det_5_final",
+      "det_6_final",
+      "det_7_final"
+    ],
+    "code": [
+      "code_distance",
+      "n_stabilizers",
+      "num_rounds"
+    ],
+    "spatial": [
+      "defect_centroid_row",
+      "defect_centroid_col",
+      "defect_spread_row",
+      "defect_spread_col",
+      "det_0_local_neigh_mean",
+      "det_1_local_neigh_mean",
+      "det_2_local_neigh_mean",
+      "det_3_local_neigh_mean",
+      "det_4_local_neigh_mean",
+      "det_5_local_neigh_mean",
+      "det_6_local_neigh_mean",
+      "det_7_local_neigh_mean",
+      "det_0_local_any",
+      "det_1_local_any",
+      "det_2_local_any",
+      "det_3_local_any",
+      "det_4_local_any",
+      "det_5_local_any",
+      "det_6_local_any",
+      "det_7_local_any",
+      "det_0_local_co",
+      "det_1_local_co",
+      "det_2_local_co",
+      "det_3_local_co",
+      "det_4_local_co",
+      "det_5_local_co",
+      "det_6_local_co",
+      "det_7_local_co"
+    ],
+    "soft": [
+      "loss_0_r0",
+      "loss_0_r1",
+      "loss_0_r2",
+      "loss_0_r3",
+      "loss_0_r4",
+      "loss_0_mean",
+      "loss_0_std",
+      "loss_0_min",
+      "loss_0_max",
+      "loss_1_r0",
+      "loss_1_r1",
+      "loss_1_r2",
+      "loss_1_r3",
+      "loss_1_r4",
+      "loss_1_mean",
+      "loss_1_std",
+      "loss_1_min",
+      "loss_1_max",
+      "loss_2_r0",
+      "loss_2_r1",
+      "loss_2_r2",
+      "loss_2_r3",
+      "loss_2_r4",
+      "loss_2_mean",
+      "loss_2_std",
+      "loss_2_min",
+      "loss_2_max",
+      "loss_3_r0",
+      "loss_3_r1",
+      "loss_3_r2",
+      "loss_3_r3",
+      "loss_3_r4",
+      "loss_3_mean",
+      "loss_3_std",
+      "loss_3_min",
+      "loss_3_max",
+      "loss_4_r0",
+      "loss_4_r1",
+      "loss_4_r2",
+      "loss_4_r3",
+      "loss_4_r4",
+      "loss_4_mean",
+      "loss_4_std",
+      "loss_4_min",
+      "loss_4_max",
+      "loss_5_r0",
+      "loss_5_r1",
+      "loss_5_r2",
+      "loss_5_r3",
+      "loss_5_r4",
+      "loss_5_mean",
+      "loss_5_std",
+      "loss_5_min",
+      "loss_5_max",
+      "loss_6_r0",
+      "loss_6_r1",
+      "loss_6_r2",
+      "loss_6_r3",
+      "loss_6_r4",
+      "loss_6_mean",
+      "loss_6_std",
+      "loss_6_min",
+      "loss_6_max",
+      "loss_7_r0",
+      "loss_7_r1",
+      "loss_7_r2",
+      "loss_7_r3",
+      "loss_7_r4",
+      "loss_7_mean",
+      "loss_7_std",
+      "loss_7_min",
+      "loss_7_max"
+    ]
+  },
+  "citeAs": "@inproceedings{wang2026qecmodelzoo,\n  title={{QEC} Model Zoo: Democratizing {AI}-enhanced Quantum Error Correction},\n  author = {Wang, Yuandou and de Groot, Max and Patwardhan, Aadi and Geerts, Floris and Hai, Rihan},\n  booktitle={The Fortieth Annual Conference on Neural Information Processing Systems Evaluations and Datasets Track},\n  year = {2026},\n  note = {Accepted at NeurIPS 2026; to appear}\n}",
+  "shotColumn": "shot_id",
+  "nRoundsColumn": "num_rounds",
+  "targetColumn": "logical_error",
+  "codeFamily": "surface code",
+  "platform": "neutral atom",
+  "distance": 3,
+  "rawFeatures": [
+    "det_0",
+    "det_1",
+    "det_2",
+    "det_3",
+    "det_4",
+    "det_5",
+    "det_6",
+    "det_7"
+  ],
+  "rawRoundColumn": "round",
+  "description": "Lukin d3. Source: qec_lake. Per-round granularity: False.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "lukin_d3/train.parquet",
+      "contentUrl": "datasets\\harvard_neutral_atoms\\d3\\Z\\train.parquet",
+      "encodingFormat": "application/vnd.apache.parquet",
+      "sha256": "8e93c8169a8b03874cc4d7ee48cd0340c845b97ca54440e7696e7647854b9138"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "lukin_d3/test.parquet",
+      "contentUrl": "datasets\\harvard_neutral_atoms\\d3\\Z\\test.parquet",
+      "encodingFormat": "application/vnd.apache.parquet",
+      "sha256": "608e996796349e348c534b43a3012b37a300c5e0f4c9cf08d458e12fe2e94427"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "lukin_d3/raw.parquet",
+      "contentUrl": "datasets\\harvard_neutral_atoms\\d3\\Z\\raw.parquet",
+      "encodingFormat": "application/vnd.apache.parquet",
+      "sha256": "17c5b42f1584d8c038a7b1670850ae96f9b572d98a15b402b1396c45242b2411"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "lukin_d3/records_train",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/total_defects",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "total_defects"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/max_defects",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "max_defects"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/defect_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defect_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/defects_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defects_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/defects_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defects_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/defects_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defects_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/defects_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defects_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/defects_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defects_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/code_distance",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "code_distance"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/n_stabilizers",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "n_stabilizers"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/num_rounds",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "num_rounds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/defect_centroid_row",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defect_centroid_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/defect_centroid_col",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defect_centroid_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/defect_spread_row",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defect_spread_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/defect_spread_col",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "defect_spread_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_0_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_0_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_1_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_1_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_2_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_2_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_3_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_3_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_4_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_4_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_5_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_5_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_6_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_6_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/det_7_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "det_7_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_0_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_0_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_0_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_0_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_0_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_0_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_0_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_0_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_0_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_0_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_0_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_0_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_0_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_0_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_0_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_0_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_0_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_0_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_1_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_1_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_1_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_1_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_1_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_1_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_1_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_1_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_1_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_1_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_1_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_1_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_1_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_1_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_1_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_1_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_1_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_1_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_2_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_2_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_2_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_2_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_2_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_2_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_2_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_2_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_2_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_2_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_2_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_2_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_2_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_2_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_2_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_2_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_2_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_2_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_3_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_3_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_3_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_3_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_3_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_3_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_3_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_3_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_3_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_3_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_3_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_3_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_3_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_3_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_3_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_3_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_3_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_3_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_4_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_4_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_4_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_4_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_4_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_4_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_4_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_4_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_4_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_4_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_4_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_4_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_4_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_4_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_4_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_4_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_4_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_4_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_5_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_5_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_5_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_5_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_5_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_5_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_5_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_5_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_5_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_5_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_5_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_5_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_5_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_5_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_5_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_5_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_5_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_5_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_6_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_6_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_6_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_6_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_6_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_6_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_6_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_6_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_6_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_6_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_6_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_6_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_6_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_6_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_6_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_6_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_6_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_6_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_7_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_7_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_7_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_7_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_7_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_7_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_7_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_7_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_7_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_7_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_7_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_7_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_7_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_7_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_7_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_7_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/loss_7_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "loss_7_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/logical_error",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "logical_error"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_train/shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/train.parquet"
+            },
+            "extract": {
+              "column": "shot_id"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "lukin_d3/records_test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/total_defects",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "total_defects"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/max_defects",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "max_defects"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/defect_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defect_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/defects_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defects_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/defects_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defects_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/defects_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defects_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/defects_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defects_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/defects_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defects_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_final",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_final"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/code_distance",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "code_distance"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/n_stabilizers",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "n_stabilizers"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/num_rounds",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "num_rounds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/defect_centroid_row",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defect_centroid_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/defect_centroid_col",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defect_centroid_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/defect_spread_row",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defect_spread_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/defect_spread_col",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "defect_spread_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_0_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_0_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_1_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_1_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_2_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_2_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_3_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_3_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_4_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_4_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_5_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_5_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_6_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_6_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/det_7_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "det_7_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_0_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_0_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_0_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_0_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_0_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_0_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_0_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_0_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_0_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_0_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_0_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_0_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_0_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_0_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_0_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_0_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_0_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_0_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_1_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_1_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_1_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_1_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_1_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_1_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_1_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_1_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_1_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_1_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_1_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_1_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_1_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_1_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_1_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_1_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_1_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_1_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_2_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_2_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_2_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_2_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_2_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_2_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_2_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_2_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_2_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_2_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_2_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_2_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_2_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_2_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_2_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_2_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_2_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_2_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_3_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_3_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_3_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_3_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_3_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_3_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_3_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_3_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_3_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_3_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_3_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_3_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_3_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_3_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_3_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_3_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_3_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_3_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_4_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_4_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_4_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_4_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_4_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_4_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_4_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_4_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_4_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_4_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_4_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_4_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_4_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_4_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_4_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_4_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_4_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_4_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_5_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_5_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_5_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_5_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_5_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_5_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_5_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_5_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_5_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_5_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_5_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_5_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_5_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_5_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_5_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_5_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_5_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_5_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_6_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_6_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_6_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_6_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_6_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_6_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_6_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_6_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_6_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_6_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_6_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_6_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_6_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_6_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_6_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_6_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_6_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_6_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_7_r0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_7_r0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_7_r1",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_7_r1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_7_r2",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_7_r2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_7_r3",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_7_r3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_7_r4",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_7_r4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_7_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_7_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_7_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_7_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_7_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_7_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/loss_7_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "loss_7_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/logical_error",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "logical_error"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_test/shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/test.parquet"
+            },
+            "extract": {
+              "column": "shot_id"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "lukin_d3/records_raw",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "shot_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/round",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/logical_error",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "logical_error"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/file_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "file_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/stim_file_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "stim_file_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/code",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "code"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/distance",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "distance"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/basis",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "basis"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/decoder_pred",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "decoder_pred"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/decoder_gap",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "decoder_gap"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/decoder_pred_lossto0",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "decoder_pred_lossto0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/decoder_gap_lossto0",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "decoder_gap_lossto0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/shuttle_dist",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "shuttle_dist"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/corner_row",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "corner_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/corner_col",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "corner_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/det_0",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/loss_0",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "loss_0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/det_1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/loss_1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "loss_1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/det_2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/loss_2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "loss_2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/det_3",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/loss_3",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "loss_3"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/det_4",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/loss_4",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "loss_4"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/det_5",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_5"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/loss_5",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "loss_5"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/det_6",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_6"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/loss_6",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "loss_6"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/det_7",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "det_7"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "lukin_d3/records_raw/loss_7",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "lukin_d3/raw.parquet"
+            },
+            "extract": {
+              "column": "loss_7"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

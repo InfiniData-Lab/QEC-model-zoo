@@ -1,0 +1,2387 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "dct": "http://purl.org/dc/terms/",
+    "annotation": "cr:annotation",
+    "arrayShape": "cr:arrayShape",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "containedIn": "cr:containedIn",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "equivalentProperty": "cr:equivalentProperty",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "excludes": "cr:excludes",
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isArray": "cr:isArray",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "readLines": "cr:readLines",
+    "sdVersion": "cr:sdVersion",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform",
+    "unArchive": "cr:unArchive",
+    "value": "cr:value"
+  },
+  "@type": "sc:Dataset",
+  "name": "DiCarlo",
+  "conformsTo": "http://mlcommons.org/croissant/1.1",
+  "url": "https://www.kaggle.com/datasets/infinidata/qec-model-zoo-data",
+  "rai:dataLimitations": "The QEC model zoo dataset is intended solely for offline evaluation and is not designed for deployment in a real-time decoding environment. The fidelity per processed dataset is inherently restricted to the adopted shot-level feature construction scheme, which may omit or simplify information relevant to the full structure of the observed syndromes and underlying error patterns of the raw datasets. Although the Temporal and Spatial feature groups capture several features at each dimension across different datasets, the dataset is limited in capturing dynamic temporal-spatial information in a real-time, continuous decoding scenario. Consequently, the evaluation results on datasets should be interpreted within the scope of these feature-construction assumptions and should not be taken as a direct indication of real-time decoding performance.",
+  "rai:dataBiases": "The real datasets are entirely sourced from specific quantum computing platforms or quantum processing units, mainly introducing platform- or hardware-specific bias, limiting the generalizability to other platforms. Additionally, moving to shot-level features adds new biases on top of the platform biases. Each shot is treated as an individual decoding sample characterized by seven carefully engineered feature groups. Choosing these seven feature groups is subjective. While this representation is suited to shot-level AI-based decoding and enables evaluation of a broader range of AI models, it may not capture the full spectrum of syndrome measurement, potentially limiting the ability of AI-based decoders. For simulated datasets, biases are mainly from Stim's simulation models, noise models, circuit choices, and quantum data generation protocols with different code families for training, testing, or inference.",
+  "rai:personalSensitiveInformation": "Although some dataset names contain personal names and organization names to facilitate differentiation between them, the datasets do not contain information related to gender, age, geographic location, language, culture, socio-economic status, health and medical data, and political or religious beliefs.",
+  "rai:dataUseCases": "The shot-level sampling datasets are used to evaluate the performance of traditional machine learning and tabular deep learning models, including MLP, TabM, TabR, XGBoost, LightGBM, CatBoost, TabICLv2, and TabPFNv2 for QEC decoding tasks. These datasets can be used to evaluate more models that can consume them. In addition, these datasets support ablation studies to investigate the impact of different feature selections on decoding performance. By splitting the datasets into sliding windows, they could be further used for continuous decoding tasks, which would be better suited to real-time experiments.",
+  "rai:dataSocialImpact": "The QEC model-zoo dataset enables rigorous empirical study of AI-based QEC decoders and supports feature-group ablation, allowing users to systematically investigate which input feature groups contribute most to the performance of different AI-based QEC decoders across target code families. For QEC researchers, it provides a practical way to organize heterogeneous benchmark experiments, compare decoders under shared protocols, and reuse model configurations across datasets and hardware settings. For AI researchers, it lowers the barrier to entry by turning quantum decoding into a set of accessible benchmark tasks with shared inputs, metrics, and baselines.",
+  "rai:hasSyntheticData": false,
+  "prov:wasDerivedFrom": [
+    {
+      "@id": "https://www.doi.org/10.4121/902d7f9e-38bf-48a2-a2f7-52bbf7aeeedf",
+      "prov:label": "Data underlying the publication: Improved error correction with leakage reduction units built into qubit measurement in a superconducting quantum processor",
+      "sc:license": "https://creativecommons.org/licenses/by/4.0/",
+      "prov:wasAttributedTo": {
+        "prov:label": "4TU.ResearchData"
+      }
+    }
+  ],
+  "prov:wasGeneratedBy": [
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q3306762"
+      },
+      "prov:label": "Dataset Digging",
+      "sc:description": "Exploratory data analysis and in-depth examination of the raw dataset structure and content.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:Agent",
+          "@id": "research_author_(human)",
+          "prov:label": "Research author (Human)",
+          "sc:description": "Studied the raw data and experimental setup to plan the processing steps."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q5227332"
+      },
+      "prov:label": "QuTech Format Conversion",
+      "sc:description": "Data formatting and conversion into standard QuTech representation using domain-specific codebase.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "qutech_code_pipeline",
+          "prov:label": "QuTech code pipeline",
+          "sc:description": "QuTech's domain-specific codebase, used to convert the raw data into the standard QuTech format."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q5227332"
+      },
+      "prov:label": "Table Structuring",
+      "sc:description": "Extracting structured tabular representations from the processed dataset.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "feature_extraction_pipeline",
+          "prov:label": "Feature extraction pipeline",
+          "sc:description": "Turned the converted data into structured per-shot tables."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q3306762"
+      },
+      "prov:label": "Quality Verification",
+      "sc:description": "Validation and quality control checks conducted jointly through manual inspection and automated agents.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:Agent",
+          "@id": "human_auditor_(research_author)",
+          "prov:label": "Human Auditor (Research author)",
+          "sc:description": "Manually inspected the tables and reviewed the automated check results. Reviewed every finding from the AI agents before any change was made."
+        },
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "automated_quality_review_agents",
+          "prov:label": "Automated Quality Review Agents",
+          "sc:description": "(Claude Code, Anthropic, running Claude Opus 4.7, later Claude Opus 4.8 and Claude Opus 5): AI coding agents that checked the quality of the processing (for example the rows of the output tables) and read through the processing code to check its quality. They reported their findings to the research author, who decided on every fix."
+        }
+      ]
+    },
+    {
+      "@type": "prov:Activity",
+      "prov:type": {
+        "@id": "https://www.wikidata.org/wiki/Q5227332"
+      },
+      "prov:label": "Pipeline Transformation",
+      "sc:description": "QEC-Lake step: the tables were run end to end through the QEC-Lake data lake pipeline, then custom manual transformations were applied. Activities 1\u20134 did not use QEC-Lake.",
+      "prov:wasAttributedTo": [
+        {
+          "@type": "prov:SoftwareAgent",
+          "@id": "qec-lake_data_lake_pipeline",
+          "prov:label": "QEC-Lake data lake pipeline",
+          "sc:description": "Standardised the tables into the QEC-Lake format."
+        },
+        {
+          "@type": "prov:Agent",
+          "@id": "research_author_(human)",
+          "prov:label": "Research author (Human)",
+          "sc:description": "Applied the custom manual transformations after the pipeline."
+        }
+      ]
+    }
+  ],
+  "license": "https://creativecommons.org/licenses/by-nc/4.0/",
+  "variableMeasured": [
+    "temporal",
+    "rates",
+    "final",
+    "code",
+    "spatial",
+    "soft",
+    "lstm"
+  ],
+  "featureGroupsMapping": {
+    "temporal": [
+      "defect1_rolling_mean",
+      "defect2_rolling_mean",
+      "defect1_rolling_std",
+      "defect2_rolling_std",
+      "defect1_burst_length",
+      "defect2_burst_length",
+      "defect1_first_norm",
+      "defect2_first_norm",
+      "defect1_last_norm",
+      "defect2_last_norm",
+      "defect1_episodes",
+      "defect2_episodes",
+      "defect1_recency",
+      "defect2_recency",
+      "defect1_switch_rate",
+      "defect2_switch_rate"
+    ],
+    "rates": [
+      "total_defects",
+      "max_defects",
+      "defect_rate"
+    ],
+    "final": [
+      "defect1_last_round",
+      "defect2_last_round"
+    ],
+    "code": [
+      "code_distance",
+      "n_stabilizers",
+      "num_rounds"
+    ],
+    "spatial": [
+      "defect_centroid_row",
+      "defect_centroid_col",
+      "defect_spread_row",
+      "defect_spread_col",
+      "defect1_local_neigh_mean",
+      "defect2_local_neigh_mean",
+      "defect1_local_any",
+      "defect2_local_any",
+      "defect1_local_co",
+      "defect2_local_co"
+    ],
+    "soft": [
+      "leak_z1_mean",
+      "leak_z1_std",
+      "leak_z1_min",
+      "leak_z1_max",
+      "leak_z2_mean",
+      "leak_z2_std",
+      "leak_z2_min",
+      "leak_z2_max"
+    ],
+    "lstm": [
+      "lstm_encoding_000",
+      "lstm_encoding_001",
+      "lstm_encoding_002",
+      "lstm_encoding_003",
+      "lstm_encoding_004",
+      "lstm_encoding_005",
+      "lstm_encoding_006",
+      "lstm_encoding_007",
+      "lstm_encoding_008",
+      "lstm_encoding_009",
+      "lstm_encoding_010",
+      "lstm_encoding_011",
+      "lstm_encoding_012",
+      "lstm_encoding_013",
+      "lstm_encoding_014",
+      "lstm_encoding_015",
+      "lstm_encoding_016",
+      "lstm_encoding_017",
+      "lstm_encoding_018",
+      "lstm_encoding_019",
+      "lstm_encoding_020",
+      "lstm_encoding_021",
+      "lstm_encoding_022",
+      "lstm_encoding_023"
+    ]
+  },
+  "citeAs": "@inproceedings{wang2026qecmodelzoo,\n  title={{QEC} Model Zoo: Democratizing {AI}-enhanced Quantum Error Correction},\n  author = {Wang, Yuandou and de Groot, Max and Patwardhan, Aadi and Geerts, Floris and Hai, Rihan},\n  booktitle={The Fortieth Annual Conference on Neural Information Processing Systems Evaluations and Datasets Track},\n  year = {2026},\n  note = {Accepted at NeurIPS 2026; to appear}\n}",
+  "shotColumn": "global_shot_id",
+  "nRoundsColumn": "num_rounds",
+  "targetColumn": "log_error",
+  "codeFamily": "repetition code",
+  "platform": "superconducting",
+  "distance": 3,
+  "rawFeatures": [
+    "defect1",
+    "defect2"
+  ],
+  "rawRoundColumn": "round_id",
+  "shotFeaturesSequence": [
+    "final_defect1",
+    "final_defect2"
+  ],
+  "description": "DiCarlo. Source: DiCarlo Lab. Per-round granularity: False.",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "dicarlo/train.parquet",
+      "contentUrl": "datasets\\dicarlo_rep_d3\\train.parquet",
+      "encodingFormat": "application/vnd.apache.parquet",
+      "sha256": "a6d3566aba9058b8883fe9dd65178a48d5381627b558e922efa906925feef25e"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "dicarlo/test.parquet",
+      "contentUrl": "datasets\\dicarlo_rep_d3\\test.parquet",
+      "encodingFormat": "application/vnd.apache.parquet",
+      "sha256": "93da26e817bf3211b5609e4ff7b5289b784a5da1b5c7bbc1e1afba576e0e237c"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "dicarlo/raw.parquet",
+      "contentUrl": "datasets\\dicarlo_rep_d3\\raw.parquet",
+      "encodingFormat": "application/vnd.apache.parquet",
+      "sha256": "ad3070771deadc94950c3c58765b8438926b13a4529c4bccdff8ca93349bb90e"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "dicarlo/records_train",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect1_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect1_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect2_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect2_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect1_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect1_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect2_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect2_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect1_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect1_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect2_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect2_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect1_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect1_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect2_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect2_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect1_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect1_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect2_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect2_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect1_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect1_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect2_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect2_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect1_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect1_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect2_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect2_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect1_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect1_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect2_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect2_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/total_defects",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "total_defects"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/max_defects",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "max_defects"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect1_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect1_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect2_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect2_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/code_distance",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "code_distance"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/n_stabilizers",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "n_stabilizers"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/num_rounds",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "num_rounds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect_centroid_row",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect_centroid_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect_centroid_col",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect_centroid_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect_spread_row",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect_spread_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect_spread_col",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect_spread_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect1_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect1_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect2_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect2_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect1_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect1_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect2_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect2_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect1_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect1_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/defect2_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "defect2_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/leak_z1_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "leak_z1_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/leak_z1_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "leak_z1_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/leak_z1_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "leak_z1_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/leak_z1_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "leak_z1_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/leak_z2_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "leak_z2_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/leak_z2_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "leak_z2_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/leak_z2_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "leak_z2_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/leak_z2_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "leak_z2_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/log_error",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "log_error"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/global_shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "global_shot_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_000",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_000"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_001",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_001"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_002",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_002"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_003",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_003"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_004",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_004"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_005",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_005"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_006",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_006"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_007",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_007"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_008",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_008"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_009",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_009"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_010",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_010"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_011",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_011"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_012",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_012"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_013",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_013"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_014",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_014"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_015",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_015"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_016",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_016"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_017",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_017"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_018",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_018"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_019",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_019"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_020",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_020"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_021",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_021"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_022",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_022"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_train/lstm_encoding_023",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/train.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_023"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "dicarlo/records_test",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect1_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect1_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect2_rolling_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect2_rolling_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect1_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect1_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect2_rolling_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect2_rolling_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect1_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect1_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect2_burst_length",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect2_burst_length"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect1_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect1_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect2_first_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect2_first_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect1_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect1_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect2_last_norm",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect2_last_norm"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect1_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect1_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect2_episodes",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect2_episodes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect1_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect1_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect2_recency",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect2_recency"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect1_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect1_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect2_switch_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect2_switch_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/total_defects",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "total_defects"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/max_defects",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "max_defects"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect_rate",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect_rate"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect1_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect1_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect2_last_round",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect2_last_round"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/code_distance",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "code_distance"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/n_stabilizers",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "n_stabilizers"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/num_rounds",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "num_rounds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect_centroid_row",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect_centroid_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect_centroid_col",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect_centroid_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect_spread_row",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect_spread_row"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect_spread_col",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect_spread_col"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect1_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect1_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect2_local_neigh_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect2_local_neigh_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect1_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect1_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect2_local_any",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect2_local_any"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect1_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect1_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/defect2_local_co",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "defect2_local_co"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/leak_z1_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "leak_z1_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/leak_z1_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "leak_z1_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/leak_z1_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "leak_z1_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/leak_z1_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "leak_z1_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/leak_z2_mean",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "leak_z2_mean"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/leak_z2_std",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "leak_z2_std"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/leak_z2_min",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "leak_z2_min"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/leak_z2_max",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "leak_z2_max"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/log_error",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "log_error"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/global_shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "global_shot_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_000",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_000"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_001",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_001"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_002",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_002"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_003",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_003"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_004",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_004"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_005",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_005"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_006",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_006"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_007",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_007"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_008",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_008"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_009",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_009"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_010",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_010"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_011",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_011"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_012",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_012"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_013",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_013"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_014",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_014"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_015",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_015"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_016",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_016"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_017",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_017"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_018",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_018"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_019",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_019"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_020",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_020"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_021",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_021"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_022",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_022"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_test/lstm_encoding_023",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/test.parquet"
+            },
+            "extract": {
+              "column": "lstm_encoding_023"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "dicarlo/records_raw",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "split"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/global_shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "global_shot_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/file_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "file_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/shot_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "shot_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/round_id",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "round_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/z1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "z1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/z2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "z2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/exp_type",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "exp_type"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/num_rounds",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "num_rounds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/leak_level",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "leak_level"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/state_idx",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "state_idx"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/dq0",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "dq0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/dq1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "dq1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/dq2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "dq2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/log_error",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "log_error"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/leak_z1",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "leak_z1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/leak_z2",
+          "dataType": "sc:Boolean",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "leak_z2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/syn1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "syn1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/syn2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "syn2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/defect1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "defect1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/defect2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "defect2"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/final_defect1",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "final_defect1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "dicarlo/records_raw/final_defect2",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "dicarlo/raw.parquet"
+            },
+            "extract": {
+              "column": "final_defect2"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
