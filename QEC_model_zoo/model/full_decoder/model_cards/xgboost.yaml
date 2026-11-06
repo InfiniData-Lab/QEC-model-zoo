@@ -2,5 +2,6 @@ name: XGBoost
 description: 'XGBoost provides a parallel tree boosting (also known as GBDT, GBM) that solve many data science problems in a fast and accurate way.'
 model_family: GBDT
 license: 'Apache License 2.0'
+model_checkpoint_license: Model checkpoints are licensed under the Apache License, Version 2.0, subject to the Commons Clause License Condition v1.0 (see the LICENSE file in this repository).
 citation: 'Tianqi Chen and Carlos Guestrin. Xgboost: A scalable tree boosting system. KDD ’16, page 785–794, New York, NY, USA, 2016. Association for Computing Machinery. ISBN 9781450342322. doi:10.1145/2939672.2939785. URL https://doi.org/10.1145/2939672.2939785.'
 parameter_configuration_file: experiments/configs/model/full-decoder/xgboost.yaml

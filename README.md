@@ -6,21 +6,20 @@ This section of the documentation explains the most important files and director
 
 ### Experiments
 The [`experiments`](experiments/) directory contains configurations for full-decoders (also referred to as models).
-Training experiments train the decoders, find (near) optimal hyperparameters through hyperparameter tuning with the optuna library [1].
+Training experiments train the decoders and find (near) optimal hyperparameters through hyperparameter tuning using the Optuna library [1].
 After training, model checkpoints and parameters are saved in the [`experiments/model_checkpoints`](experiments/model_checkpoints/) directory. 
 These checkpoints and parameters are then used to configure the inference experiments.
 After experiments are run, results will be saved to the [`experiments/results`](experiments/results/) directory.
 
 ### Datasets & Croissant Metadata
 Pre-processed dataset files reside in the [`datasets`](datasets/) directory.
-If this directory does not exist in the root of the project, you can download it through [Kaggle]('https://www.kaggle.com/datasets/infinidata/qec-model-zoo-data'), make sure the [`datasets`](datasets/) folder is located in the root of the project and has the following structure:
+If this directory does not exist in the root of the project or is incomplete, you can download it through [Kaggle](https://www.kaggle.com/datasets/infinidata/qec-model-zoo-data) make sure the [`datasets`](datasets/) folder is located in the root of the project and has the following structure:
 ``` 
-datasets /
+datasets/
 	croissant/
 	dicarlo_rep_d3/
 	google_color/
 	...
-	dataset-metadata.json
 	dataset_catalog.yaml
 	README.md
 ```
@@ -54,7 +53,8 @@ Results for full-decoders are obtained using the Delft AI Cluster (DAIC) [2]. Th
 
 ## Full-Decoders
 ### Supported Models & Model Cards
-For each of the full-decoders included in the model zoo, we record a model card, including a citation to the source, and the license <TODO UPDATE LICENSES>. For each model card, see:
+For each of the full-decoders included in the model zoo, we record a model card, including a citation to the source, and the license of the implementation if applicable, model checkpoints generated from the model zoo may be licensed separately.
+For each model card, see:
 - [CatBoost](QEC_model_zoo/model/full_decoder/model_cards/catboost.yaml)
 - [LightGBM](QEC_model_zoo/model/full_decoder/model_cards/lightgbm.yaml)
 - [XGBoost](QEC_model_zoo/model/full_decoder/model_cards/xgboost.yaml)
@@ -75,7 +75,7 @@ It is recommended to use Python 3.10 and a virtual environment (or conda) with t
 pip install -r requirements.txt
 ```
 
-Furthermore, a GPU with CUDA enabled is required to reproduce full-decoder results. Make sure that the pytorch version and index url in the [`requirements.txt`](`requirements.txt`) file is aligned with your CUDA version, our requirements file is set up for CUDA 12.4 and Python 3.10.
+Furthermore, a GPU with CUDA enabled is required to reproduce full-decoder results. Make sure that the pytorch version and index url in the [`requirements.txt`](requirements.txt) file is aligned with your CUDA version, our requirements file is set up for CUDA 12.4 and Python 3.10.
 Note that for the usage of the full-decoder TabPFNv2, a token is required and should be set in your execution environment as an environment variable, for instructions on how to obtain a token, see [https://platform.priorlabs.ai/playground](https://platform.priorlabs.ai/playground).
 Also make sure that the pre-processed datasets are downloaded as described in section "Repository Structure" of this file.
 
@@ -98,7 +98,7 @@ To train full-decoders on all datasets, you can run the following shell scripts:
 	```
 - Color code: 
 	```bash
-	./"QEC_model_zoo/benchmark/color code/full_decoder/train_full_decoders_color_code.sh""
+	./"QEC_model_zoo/benchmark/color code/full_decoder/train_full_decoders_color_code.sh"
 	```
 - Surface code: 
    ```bash
@@ -115,7 +115,7 @@ To run inference experiments for full-decoders on all datasets, you can run the 
 	```
 - Color code: 
 	```bash
-	./"QEC_model_zoo/benchmark/color code/full_decoder/inference_full_decoders_color_code.sh""
+	./"QEC_model_zoo/benchmark/color code/full_decoder/inference_full_decoders_color_code.sh"
 	```
 - Surface code: 
    ```bash
@@ -139,7 +139,7 @@ Figures are saved to the [`QEC_model_zoo/analysis/figures`](QEC_model_zoo/analys
 
 ### Hardware & Software specifications
 All full-decoder experiments are run in a virtual environment with Python version 3.10 and CUDA 12.4, note that running the experiments requires CUDA.
-The hardware we use is 1 GPU of the Delft AI Cluster [2] with the following specifications:
+The hardware we use for full-decoder experiments is a single NVIDIA GPU of the Delft AI Cluster [2] with the following specifications:
 - Model: NVIDIA L40
 - Architecture: Ada Lovelace
 - CUDA cores: 18176
@@ -161,13 +161,13 @@ When the conda environment and pre-trained pre-decoders are ready, you can run t
 
 Surface code: 
 ```bash
-cd QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder
+cd "QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder"
 bash QEC-PD-SURFACE-Fast-cpu.sh
 ```
 
 Color code:
 ```bash
-cd QEC_model_zoo/benchmark/color code/NVIDIA-predecoder
+cd "QEC_model_zoo/benchmark/color code/NVIDIA-predecoder"
 bash QEC-PD-COLOR-ModelB-cpu.sh
 ```
 More details can be found at `QEC_model_zoo/benchmark/surface code/NVIDIA-predecoder/README.md` and `QEC_model_zoo/benchmark/color code/NVIDIA-predecoder/README.md`, respectively. 
@@ -196,7 +196,7 @@ Surface code Transformer checkpoint:
 These models can be downloaded with the MIT license. In `QEC_model_zoo/benchmark/BB code/README.md`, we include the instructions about running inference experiments for BB code. The commands download the checkpoints from Hugging Face (`bb/bb72_transformer.pt` and `bb/neural_bp_bb72.pt`), which is then cached in `~/.cache/huggingface` (see the saved run logs).
 
 ### Result Analysis
- The BB code results of the NTU decoder experiments are saved in `QEC_model_zoo/benchmark/BB code/NTU-Transformer/bb72_transformer_eval_r6_p0.005.csv` and `QEC_model_zoo/benchmark/BB code/NTU-Neural-BP/bb72_neuralbp_eval_r6_p0.005.csv`, respectively. The `QEC_model_zoo/benchmark/surface code/NTU-Transformer/eval_d7_results.csv` stores the surfce-code experimental results. These results are collected from a workstation equipped with an NVIDIA GeForce RTX 2080 Ti GPU (11 GB GDDR6, driver 525.147.05), an Intel Core i9-10900KF CPU (3.70 GHz, 10 cores/20 threads), and 31 GiB of system RAM (running Python 3.11.15 and CUDA 12.0). 
+ The BB code results of the NTU decoder experiments are saved in `QEC_model_zoo/benchmark/BB code/NTU-Transformer/bb72_transformer_eval_r6_p0.005.csv` and `QEC_model_zoo/benchmark/BB code/NTU-Neural-BP/bb72_neuralbp_eval_r6_p0.005.csv`, respectively. The `QEC_model_zoo/benchmark/surface code/NTU-Transformer/eval_d7_results.csv` stores the surface-code experimental results. These results are collected from a workstation equipped with an NVIDIA GeForce RTX 2080 Ti GPU (11 GB GDDR6, driver 525.147.05), an Intel Core i9-10900KF CPU (3.70 GHz, 10 cores/20 threads), and 31 GiB of system RAM (running Python 3.11.15 and CUDA 12.0). 
 
 We note that the quantity reported as `LER` in the saved result files is in fact (1 - Block Acc), i.e., the logical error probability accumulated over all R=6 rounds. To obtain the per-round logical error rate $$\epsilon_L$$, we convert the LER per round by the formula $$\epsilon_L = \frac{1}{2}[1-(1-2P_{\mathrm{block}}(R))^{\frac{1}{R}}]$$. Additional analysis code for NTU decoders can be found in the [`QEC_model_zoo/analysis/QEC_ntu_decoders_LER per round.ipynb`](QEC_model_zoo/analysis/QEC_ntu_decoders_LER per round.ipynb) file.
 
@@ -211,6 +211,11 @@ To obtain these results we:
  3. This outputs results to the [`QEC_model_zoo/gnn_qec-main/outputs/metrics`](QEC_model_zoo/gnn_qec-main/outputs/metrics/) directory.
 
 Additional code for analyzing and formatting these results can be found in the [`QEC_model_zoo/analysis/QEC_gnn_decoders_analysis.ipynb`](QEC_model_zoo/analysis/QEC_gnn_decoders_analysis.ipynb) file.
+
+## Licensing
+
+Software and model checkpoints introduced through this code repository are licensed under the Apache License, Version 2.0, subject to the Commons Clause License Condition v1.0 (see the [`LICENSE`](LICENSE) file in this repository).
+Externally sourced datasets, software, and model checkpoints remain subject to their respective licenses.
 
 ## Citation
 

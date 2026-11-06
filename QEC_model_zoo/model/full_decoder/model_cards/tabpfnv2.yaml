@@ -2,5 +2,6 @@ name: TabPFNv2
 description: Tabular classification model with in-context-learning capabilities.
 model_family: Tabular Foundation Model
 license: Apache License 2.0
+model_checkpoint_license: Model checkpoints are licensed under the Apache License, Version 2.0, subject to the Commons Clause License Condition v1.0 (see the LICENSE file in this repository).
 citation: 'Noah Hollmann, Samuel Müller, Lennart Purucker, Arjun Krishnakumar, Max Körfer, Shi Bin Hoo, Robin Tibor Schirrmeister, and Frank Hutter. Accurate predictions on small data with a tabular foundation model. Nature, 637(8045):319–326, 2025.'
 parameter_configuration_file: experiments/configs/model/full-decoder/tabpfnv2.yaml

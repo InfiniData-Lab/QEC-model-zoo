@@ -2,5 +2,6 @@ name: TabR
 description: Neural-network based tabular learner utilising retrieval mechanism.
 model_family: Neural-network-based
 license: MIT License
+model_checkpoint_license: Model checkpoints are licensed under the Apache License, Version 2.0, subject to the Commons Clause License Condition v1.0 (see the LICENSE file in this repository).
 citation: 'Yury Gorishniy, Ivan Rubachev, Nikolay Kartashev, Daniil Shlenskii, Akim Kotelnikov, and Artem Babenko. Tabr: Tabular deep learning meets nearest neighbors in 2023. arXiv preprint arXiv:2307.14338, 2023.'
 parameter_configuration_file: experiments/configs/model/full-decoder/tabr.yaml
